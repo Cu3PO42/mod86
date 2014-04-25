@@ -408,6 +408,14 @@ module.exports = function (grunt) {
 
         // When assets are changed:
         tasks: ['compileAssets', 'linkAssets']
+      },
+      css: {
+        files: ['.tmp/public/**/*.css'],
+
+          // Live Reload in browser
+          options: {
+              livereload: true
+          }
       }
     }
   });
