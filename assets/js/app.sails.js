@@ -8,7 +8,7 @@
  */
 
 
-(function (io) {
+define(["sails.io"], function (io) {
 
   // as soon as this file is loaded, connect automatically, 
   var socket = io.connect();
@@ -51,7 +51,6 @@
 
   // Expose connected `socket` instance globally so that it's easy
   // to experiment with from the browser console while prototyping.
-  window.socket = socket;
 
 
   // Simple log function to keep the example simple
@@ -60,12 +59,5 @@
       console.log.apply(console, arguments);
     }
   }
-  
-
-})(
-
-  // In case you're wrapping socket.io to prevent pollution of the global namespace,
-  // you can replace `window.io` with your own `io` here:
-  window.io
-
-);
+  return socket;
+});

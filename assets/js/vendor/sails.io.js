@@ -17,7 +17,7 @@
  * http://sailsjs.org/#documentation
  */
 
-(function (io) {
+define(["socket"], function (io) {
 
 
   // We'll be adding methods to `io.SocketNamespace.prototype`, the prototype for the 
@@ -154,14 +154,5 @@
 
     });
   }
-  
-
-
-
-}) (
-
-  // In case you're wrapping socket.io to prevent pollution of the global namespace,
-  // you can replace `window.io` with your own `io` here:
-  window.io
-
-);
+  return io;
+});

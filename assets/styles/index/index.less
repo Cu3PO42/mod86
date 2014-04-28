@@ -1,5 +1,5 @@
-@import "../../styles/light_theme";
-@import "../../styles/utility";
+@import "../light_theme";
+@import "../utility";
 
 .mainElement {
     padding: 0 15%;
@@ -47,20 +47,23 @@ header#header {
         list-style-type: none;
         display: flex;
         height: 100%;
-        li a {
-            .blockAnchorCenter;
-            height: 100%;
-            box-sizing: border-box;
-            color: @mainTextColor;
-            span {
-                padding: 1em 1em .7em 1em;
-                font-size: 1.2em;
-                font-weight: 300;
-                text-transform: uppercase;
-            }
-            border-bottom: .3em solid transparent;
-            &.active, &:hover {
-                border-bottom: .3em solid @mainAccentColor;
+        li {
+            display: flex;
+            a {
+                .blockAnchorCenter;
+                box-sizing: border-box;
+                color: @mainTextColor;
+                margin: auto 0;
+                span {
+                    padding: 1em 1em .7em 1em;
+                    font-size: 1.2em;
+                    font-weight: 300;
+                    text-transform: uppercase;
+                }
+                border-bottom: .3em solid transparent;
+                &.active, &:hover {
+                    border-bottom: .3em solid @mainAccentColor;
+                }
             }
         }
     }
@@ -161,30 +164,4 @@ footer#footer {
     }
 }
 
-main {
-    & > section.first {
-        height: 100vh;
-        width: 100vw;
-        background: #f6b44d url(../../images/motorola_processor_background.jpg) center no-repeat;
-        display: flex;
-        & > div {
-            margin: auto;
-            @color: @mainBackgroundColor;
-            h1 {
-                font-size: 4em;
-                color: @color;
-            }
-            a {
-                display: block;
-                margin-top: .5em;
-                border: 1px solid @color;
-                border-radius: .5em;
-                padding: .8em;
-                text-align: center;
-                font-size: 1.7em;
-                color: @mainBackgroundColor;
-                font-weight: 300;
-            }
-        }
-    }
-}
+
