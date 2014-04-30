@@ -61,10 +61,10 @@ header#header {
                     text-transform: uppercase;
                 }
                 border-bottom: .3em solid transparent;
-                &.active, &:hover {
-                    border-bottom: .3em solid @mainAccentColor;
-                }
             }
+        }
+        &:not(:hover) li a.active, li a:hover {
+            border-bottom: .3em solid @mainAccentColor;
         }
     }
 }

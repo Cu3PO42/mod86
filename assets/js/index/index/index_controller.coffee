@@ -1,4 +1,4 @@
-define ["app", "static_view", "socket.sails", "hbs!/templates/index/index", "hbs!/templates/index/pricing", "hbs!/templates/index/faq",
+define ["app", "static_view", "socket_sails", "hbs!/templates/index/index", "hbs!/templates/index/pricing", "hbs!/templates/index/faq",
         "hbs!/templates/index/contact", "hbs!/templates/index/impress", "hbs!/templates/index/login", "hbs!/templates/index/signup"],
 (mod86, StaticView, socket, indexTpl, pricingTpl, faqTpl, contactTpl, impressTpl, loginTpl, signupTpl) ->
     mod86.module "Index", (Index, mod86, Backbone, Marionette, $, _) ->
@@ -47,5 +47,8 @@ define ["app", "static_view", "socket.sails", "hbs!/templates/index/index", "hbs
                     className: "signup"
 
             login: (username, password) ->
-                socket.post "/login", {username: username, password: password}, (data) ->
-                    window.location.href = "http://localhost:1337" if data.login && data.successfull
+                $.post "/login", {username: username, password: password}, (data) ->
+                    if data.type == "login" and data.success
+                        mod86.trigger("login:success")
+                    else
+                        mod86.trigger("login:failed")
