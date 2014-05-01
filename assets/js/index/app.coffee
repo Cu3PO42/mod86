@@ -31,4 +31,8 @@ define ["backbone", "marionette", "marionette.handlebars"], (Backbone, Marionett
             login = document.forms["login"]
             mod86.Index.Controller.login(login.username.value, login.password.value)
         return false
+    mod86.on "login:success", ->
+        window.location.href = "http://localhost:1337"
+    mod86.on "login:failed", ->
+        alert("Login failed!")
     return mod86

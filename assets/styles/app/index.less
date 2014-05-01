@@ -1,0 +1,40 @@
+@import "../light_theme";
+@import "../utility";
+
+header#header {
+    background-color: @mainAccentColor;
+    display: flex;
+    & > a {
+        font-family: 'Anonymous Pro', monospace;
+    }
+    a {
+        .blockAnchorCenter;
+        color: @mainBackgroundColor;
+        padding: 0 1.5em;
+        &:not(.logo):hover {
+            color: @mainAccentColor;
+            background-color: @mainBackgroundColor;
+        }
+    }
+    nav {
+        display: flex;
+        ul {
+            list-style-type: none;
+            display: flex;
+            li {
+                display: flex;
+                a {
+                    color: @mainBackgroundColor;
+                    span {
+                        padding: 1em;
+                        font-weight: 300;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+    }
+    h1 {
+        font-weight: bold;
+    }
+}

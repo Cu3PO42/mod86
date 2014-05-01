@@ -1,3 +1,5 @@
+@import "../light_theme";
+
 main#mainWrapper {
     display: flex;
     & > div.login {
@@ -5,6 +7,31 @@ main#mainWrapper {
         flex: 1;
         form {
             margin: auto;
+            & > * {
+                display: block;
+                width: 300px;
+                box-sizing: border-box;
+                font-family: "Anonymous Pro", monospace;
+                &:not(:last-child) {
+                    margin-bottom: .5em;
+                }
+            }
+            input:not([type='submit']) {
+                padding: .6em;
+                border: 1px solid @dividerColor;
+                font-size: 1.2em;
+                &:-webkit-input-placeholder {
+                    color: darken(@dividerColor, 30%);
+                }
+            }
+            input[type='submit'] {
+                padding: .5em;
+                text-transform: lowercase;
+                font-size: 1.4em;
+                background-color: @mainAccentColor;
+                color: @mainBackgroundColor;
+                border: none;
+            }
         }
     }
 }

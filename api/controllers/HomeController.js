@@ -23,7 +23,7 @@ module.exports = {
    */
   index: function(req, res) {
       if (req.isAuthenticated())
-        res.view('app/index');
+        res.view('app/index', { username: req.user.username, id: req.user.id });
       else
         res.view('index/index');
   },

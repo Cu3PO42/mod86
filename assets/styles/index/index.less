@@ -43,28 +43,31 @@ header#header {
     h1 {
         font-weight: bold;
     }
-    nav ul {
-        list-style-type: none;
+    nav {
         display: flex;
-        height: 100%;
-        li {
+        ul {
+            list-style-type: none;
             display: flex;
-            a {
-                .blockAnchorCenter;
-                box-sizing: border-box;
-                color: @mainTextColor;
-                margin: auto 0;
-                span {
-                    padding: 1em 1em .7em 1em;
-                    font-size: 1.2em;
-                    font-weight: 300;
-                    text-transform: uppercase;
+            height: 100%;
+            li {
+                display: flex;
+                a {
+                    .blockAnchorCenter;
+                    box-sizing: border-box;
+                    color: @mainTextColor;
+                    margin: auto 0;
+                    span {
+                        padding: 1em 1em .7em 1em;
+                        font-size: 1.2em;
+                        font-weight: 300;
+                        text-transform: uppercase;
+                    }
+                    border-bottom: .3em solid transparent;
                 }
-                border-bottom: .3em solid transparent;
             }
-        }
-        &:not(:hover) li a.active, li a:hover {
-            border-bottom: .3em solid @mainAccentColor;
+            &:not(:hover) li a.active, li a:hover {
+                border-bottom: .3em solid @mainAccentColor;
+            }
         }
     }
 }
