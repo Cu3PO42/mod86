@@ -1,5 +1,5 @@
 require.config
-    baseUrl: "/js/index"
+    baseUrl: "/js/app"
     paths:
         "backbone": "../vendor/backbone"
         "backbone.wreqr": "../vendor/backbone.wreqr"

@@ -13,4 +13,4 @@ require ["app", "hbs!/templates/app/simulate/list", "hbs!/templates/app/simulate
             itemViewContainer: "tbody"
             template:
                 type: "handlebars"
-                template: "listTpl"
+                template: listTpl

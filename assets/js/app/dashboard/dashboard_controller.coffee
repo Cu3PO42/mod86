@@ -1,4 +1,4 @@
-require ["app", "dashboard_view"], (mod86) ->
+define ["app", "dashboard/dashboard_view"], (mod86) ->
     mod86.module "Dashboard", (Dashboard, mod86, Backbone, Marionette, $, _) ->
         Dashboard.Controller =
             show: ->

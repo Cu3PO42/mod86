@@ -1,6 +1,6 @@
-require ["app", "all"], (mod86) ->
+define ["app", "all"], (mod86) ->
     mod86.module "Entities", (Entities, mod86, Backbone, Marionette, $, _) ->
-        Entities.Processor =
+        Entities.Processor = Backbone.Collection.extend
             initialize: (objects, options) ->
                 lookup = {}
                 for e, i in objects
@@ -10,4 +10,5 @@ require ["app", "all"], (mod86) ->
                 for e in objects
                     for prop in e.connectionsProps
                         e[prop] = lookup[e[prop]]
-                Backbone::initialize.apply(this, objects, options)
+                Backbone.Collection::initialize.apply(this, objects, options)
+

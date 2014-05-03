@@ -1,14 +1,15 @@
-define ["app", "dashboard/dashboard_controller"], (mod86) ->
+define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/list_controller"], (mod86, Marionette) ->
     mod86.Router = Marionette.AppRouter.extend
         appRoutes:
             "": "showDashboard"
-            "simulate": "showSimulateList"
+            "simulate": "showSimulationList"
             "simulate/:id": "showSimulation"
     API =
         showDashboard: ->
             mod86.Dashboard.Controller.show()
         showSimulationList: ->
-
+            mod86.Simulate.List.Controller.show()
+        showSimulation: (id) ->
         logout: ->
             $.get "/logout", (data) ->
                 if data.type == "logout" and data.success
@@ -19,9 +20,9 @@ define ["app", "dashboard/dashboard_controller"], (mod86) ->
         new mod86.Router
             controller: API
         Backbone.history.start pushState: true
-        $("header#header nav a").on "click", (e) ->
-            e.preventDefault()
-            Backbone.history.navigate($(this).attr("href"), true)
+    $("header#header nav a").on "click", (e) ->
+        e.preventDefault()
+        Backbone.history.navigate($(this).attr("href"), true)
     $("header#header a.logout").click (e) ->
         e.preventDefault()
         API.logout()
