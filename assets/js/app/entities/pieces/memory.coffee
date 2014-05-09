@@ -1,6 +1,7 @@
 define ["mod"], (mod86) ->
     mod86.module "Entities.Components", (Components, mod86, Backbone, Marionette, $, _) ->
         Components.Memory = Backbone.Model.extend
+            type: "Memory"
             memory: []
             address: 0
             x: 0

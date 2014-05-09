@@ -10,6 +10,7 @@ define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/li
         showSimulationList: ->
             mod86.Simulate.List.Controller.show()
         showSimulation: (id) ->
+            mod86.Simulate.Item.Controller.show(id)
         logout: ->
             $.get "/logout", (data) ->
                 if data.type == "logout" and data.success
@@ -28,6 +29,6 @@ define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/li
         API.logout()
     mod86.on "logout:success", ->
         window.location.href = "http://localhost:1337"
-    mod86.on "dashboard:show", ->
-        Backbone.history.navigate("/dashboard")
-        API.showDashboard()
+    mod86.on "simulate:item", (id) ->
+        Backbone.history.navigate("simulate/#{id}")
+        API.showSimulation(id)

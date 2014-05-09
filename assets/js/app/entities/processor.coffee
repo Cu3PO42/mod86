@@ -1,14 +1,20 @@
 define ["app", "all"], (mod86) ->
     mod86.module "Entities", (Entities, mod86, Backbone, Marionette, $, _) ->
         Entities.Processor = Backbone.Collection.extend
-            initialize: (objects, options) ->
-                lookup = {}
-                for e, i in objects
-                    objects[i] = Entities.Components[e.type](e)
-                for e in objects
-                    lookup[e.id] = e
-                for e in objects
-                    for prop in e.connectionsProps
-                        e[prop] = lookup[e[prop]]
-                Backbone.Collection::initialize.apply(this, objects, options)
+            initialize: (options) ->
+                update_piece = (collection, piece) ->
+                    update = {}
+                    for prop in piece.get("connectionProps")
+                        update[prop] = collection.get(piece.get(prop))
+                    piece.set(update)
+                this.on "add", (piece) ->
+                    update_piece(this, piece)
+                , this
+                this.on "reset", ->
+                    that = this
+                    this.each (piece) ->
+                        update_piece(that, piece)
+                , this
 
+            model: (attrs, options) ->
+                return new Entities.Components[attrs.type](attrs, options)

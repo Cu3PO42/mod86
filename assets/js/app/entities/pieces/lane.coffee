@@ -1,6 +1,7 @@
 define ["mod"], (mod86) ->
     mod86.module "Entities.Components", (Components, mod86, Backbone, Marionette, $, _) ->
         Components.Lane = Backbone.Model.extend
+            type: "Lane"
             classes: ["lane"]
             writeable: true
             value: null

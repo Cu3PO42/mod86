@@ -5,6 +5,11 @@ require ["app", "hbs!/templates/app/simulate/list", "hbs!/templates/app/simulate
                 type: "handlebars"
                 template: listItemTpl
             tagName: "tr"
+            events:
+                "click td": "navigate"
+            navigate: ->
+                Backbone.history.navigate("simulate/#{this.model.get('id')}")
+                mod86.trigger("simulate:item", this.model.get('id'))
 
         List.Simulations = Marionette.CompositeView.extend
             tagName: "table"
