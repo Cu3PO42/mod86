@@ -1,1 +1,1 @@
-define ["lane", "memory"], ->
+define ["entities/pieces/lane", "entities/pieces/memory"], ->

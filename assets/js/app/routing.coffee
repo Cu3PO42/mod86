@@ -1,4 +1,4 @@
-define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/list_controller"], (mod86, Marionette) ->
+define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/list_controller", "simulate/item/item_controller"], (mod86, Marionette) ->
     mod86.Router = Marionette.AppRouter.extend
         appRoutes:
             "": "showDashboard"

@@ -10,14 +10,10 @@ define ["app"], (mod86) ->
         ]
 
         mod86.reqres.setHandler "processors:item", (id) ->
-            [
-                {
-                    name: "Bonsai"
-                    id: 1
-                    description: "Der Bonsai Lehrcomputer"
-                    author: "Klaus Merkert"
-                    pieces: [
-                        
-                    ]
-                }
-            ][id]
+            {
+                1: [
+                    {
+                        type: "Memory"
+                    }
+                ]
+            }[id]

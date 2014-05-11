@@ -1,4 +1,4 @@
-define ["app", "all"], (mod86) ->
+define ["app", "entities/pieces/all"], (mod86) ->
     mod86.module "Entities", (Entities, mod86, Backbone, Marionette, $, _) ->
         Entities.Processor = Backbone.Collection.extend
             initialize: (options) ->

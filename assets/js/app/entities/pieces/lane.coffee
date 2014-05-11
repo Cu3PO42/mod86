@@ -1,4 +1,4 @@
-define ["mod"], (mod86) ->
+define ["app"], (mod86) ->
     mod86.module "Entities.Components", (Components, mod86, Backbone, Marionette, $, _) ->
         Components.Lane = Backbone.Model.extend
             type: "Lane"

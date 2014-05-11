@@ -421,10 +421,14 @@ module.exports = function (grunt) {
   });
 
   // When Sails is lifted:
-  grunt.registerTask('default', [
+  grunt.registerTask('nowatch', [
     'compileAssets',
-    'linkAssets',
-    'watch'
+    'linkAssets'
+  ]);
+
+  grunt.registerTask('default', [
+      'nowatch',
+      'watch'
   ]);
 
   grunt.registerTask('compileAssets', [
