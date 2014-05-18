@@ -1,16 +1,15 @@
 define ["app"], (mod86) ->
     mod86.module "Entities.Components", (Components, mod86, Backbone, Marionette, $, _) ->
-        Components.Lane = Backbone.Model.extend
+        Components.BaseLane = Backbone.Model.extend
+            type: "BaseLane"
+            implements: ["lane"]
+            connectionProps: []
             defaults:
-                type: "Lane"
-                classes: ["lane"]
                 writeable: true
                 value: 0
-                path: []
-                connectionProps: []
             read: (listener, fun) ->
                 listener.listenTo(this, "change", fun)
-                fun()
+                fun.apply(listener)
             unRead: (listener) ->
                 listener.stopListening(this, "change")
             write: (writer, fun) ->
@@ -23,6 +22,8 @@ define ["app"], (mod86) ->
                     mod86.trigger("simulation:writeerror")
             unWrite: (writer) ->
                 this.set(writeable: true, value: 0)
-                this.stopListening(writer)
+                this.stopListening(write)
             update: (getter) -> =>
                 this.set({ value: getter() })
+            getVal: ->
+                @get("value")

@@ -1,1 +1,1 @@
-define ["app", "simulate/item/pieces/memory"], (mod86) ->
+define ["app", "simulate/item/pieces/memory", "simulate/item/pieces/lane"], (mod86) ->

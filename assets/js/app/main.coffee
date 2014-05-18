@@ -15,8 +15,8 @@ require.config
         "handlebars": "../vendor/handlebars"
         "handlebars.runtime": "../vendor/handlebars.runtime"
         "i18nprecompile": "../vendor/i18nprecompile"
-        "raphael": "../vendor/raphael"
-        "backbone.raphael": "../vendor/backbone.raphael"
+        "snap": "../vendor/snap.svg"
+        "keypress": "../vendor/keypress"
 
     shim:
         underscore:
