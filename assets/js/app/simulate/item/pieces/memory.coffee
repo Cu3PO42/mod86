@@ -24,4 +24,4 @@ define ["app"], (mod86) ->
                     res = "0" + res while res.length < length
                     res
                 @addr.node.innerHTML = padNum(@model.get("address"), 4)
-                @value.node.innerHTML = padNum(@model.getMemory(), 4)
+                @value.node.innerHTML = padNum(@model.get("value"), 4)

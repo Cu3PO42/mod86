@@ -5,6 +5,7 @@ define ["app", "entities/pieces/baselane"], (mod86) ->
             defaults:
                 device: null
                 prop: null
+            connectionProps: ["device"]
             get: (prop) ->
                 if prop == "value"
                     @device.get("value")
@@ -20,5 +21,6 @@ define ["app", "entities/pieces/baselane"], (mod86) ->
             initialize: ->
                 device = @device
                 prop = @get("prop")
-                @listenTo device, "change:#{prop}", ->
-                    @set(value: device[prop])
+                @on "after:reset", ->
+                    @listenTo device, "change:#{prop}", ->
+                        @set(value: device[prop])

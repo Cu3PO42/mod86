@@ -22,34 +22,54 @@ define ["app"], (mod86) ->
                             address: 1
                             memory: [12, 3]
                             id: 1
-                            addrLane: 4
-                            dataLane: 2
-                        }
-                        {
-                            type: "Lane"
-                            id: 2
                         }
                         {
                             type: "Memory"
                             address: 0
                             memory: [1,2,3,4,5,6]
                             id: 3
-                            addrLane: 2
-                            dataLane: 4
                             x: 200
                         }
                         {
-                            type: "Lane"
+                            type: "Bus"
+                            id: 2
+                        }
+                        {
+                            type: "Bus"
                             id: 4
+                        }
+                        {
+                            type: "DeviceLane"
+                            id: 5
+                            device: 1
+                            prop: "value"
+                        }
+                        {
+                            type: "DeviceLane"
+                            id: 6
+                            device: 3
+                            prop: "address"
+                        }
+                        {
+                            type: "LaneAccess"
+                            id: 7
+                            device: 5
+                            lane: 2
+                        }
+                        {
+                            type: "LaneAccess"
+                            id: 8
+                            device: 6
+                            lane: 2
                         }
                     ]
                     keyboardBindings:
                         "1":
-                            obj: 1
-                            on: "writeData"
-                            off: "unWriteData"
+                            obj: 7
+                            on: "write"
+                            off: "unWrite"
                         "2":
-                            obj: 3
-                            on: "readAddr"
-                            off: "unReadAddr"
+                            obj: 8
+                            on: "read"
+                            off: "unRead"
             }[id]

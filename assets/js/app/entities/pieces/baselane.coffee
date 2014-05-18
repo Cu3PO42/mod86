@@ -22,8 +22,8 @@ define ["app"], (mod86) ->
                     mod86.trigger("simulation:writeerror")
             unWrite: (writer) ->
                 this.set(writeable: true, value: 0)
-                this.stopListening(write)
+                this.stopListening(writer)
             update: (getter) -> =>
                 this.set({ value: getter() })
-            getVal: ->
+            valGetter: -> =>
                 @get("value")

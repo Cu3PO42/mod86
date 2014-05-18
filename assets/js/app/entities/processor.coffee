@@ -26,9 +26,9 @@ define ["app", "entities/pieces/all"], (mod86) ->
                     update_piece(this, piece)
                 , this
                 this.on "reset", ->
-                    that = this
-                    this.each (piece) ->
-                        update_piece(that, piece)
+                    this.each (piece) =>
+                        update_piece(this, piece)
+                    this.trigger("after:reset")
                 , this
                 options.silent = false
 

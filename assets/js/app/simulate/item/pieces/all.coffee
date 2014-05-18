@@ -1,1 +1,1 @@
-define ["app", "simulate/item/pieces/memory", "simulate/item/pieces/lane"], (mod86) ->
+define ["simulate/item/pieces/bus", "simulate/item/pieces/devicelane", "simulate/item/pieces/directlane", "simulate/item/pieces/laneaccess", "simulate/item/pieces/memory"], ->

@@ -4,13 +4,14 @@ define ["app", "entities/pieces/basecontrolflow"], (mod86) ->
             defaults:
                 device: null
                 lane: null
+            connectionProps: ["device", "lane"]
             read: ->
                 device = @device
                 lane = @lane
-                lane.read(device, device.update(lane.getVal))
+                lane.read(device, device.update(lane.valGetter()))
             unRead: ->
-                @lane.unread(@device)
+                @lane.unRead(@device)
             write: ->
-                @lane.write(@device, @device.getVal)
+                @lane.write(@device, @device.valGetter())
             unWrite: ->
                 @lane.unWrite(@device)
