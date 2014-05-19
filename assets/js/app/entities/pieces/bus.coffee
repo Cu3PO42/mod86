@@ -8,3 +8,5 @@ define ["app", "entities/pieces/baselane"], (mod86) ->
                 coord: 0
                 connectedParts: []
 
+        _.defaults(Components.Bus::defaults, Components.BaseLane::defaults)
+        Components.Bus::connectionProps = _.union(Components.Bus::connectionProps, Components.BaseLane::connectionProps)

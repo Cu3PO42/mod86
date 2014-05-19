@@ -31,6 +31,11 @@ define ["app"], (mod86) ->
                             x: 200
                         }
                         {
+                            type: "ProgrammCounter"
+                            id: 9
+                            x: 400
+                        }
+                        {
                             type: "Bus"
                             id: 2
                         }
@@ -51,15 +56,27 @@ define ["app"], (mod86) ->
                             prop: "address"
                         }
                         {
+                            type: "DeviceLane"
+                            id: 10
+                            device: 9
+                            prop: "adder"
+                        }
+                        {
                             type: "LaneAccess"
                             id: 7
                             device: 5
                             lane: 2
                         }
                         {
-                            type: "LaneAccess"
+                            type: "LaneReadOnlyAccess"
                             id: 8
                             device: 6
+                            lane: 2
+                        }
+                        {
+                            type: "LaneReadOnlyAccess"
+                            id: 11
+                            device: 10
                             lane: 2
                         }
                     ]
@@ -68,8 +85,4 @@ define ["app"], (mod86) ->
                             obj: 7
                             on: "write"
                             off: "unWrite"
-                        "2":
-                            obj: 8
-                            on: "read"
-                            off: "unRead"
             }[id]

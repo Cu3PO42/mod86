@@ -1,1 +1,1 @@
-define ["entities/pieces/basecontrolflow", "entities/pieces/baselane", "entities/pieces/bus", "entities/pieces/devicelane", "entities/pieces/directlane", "entities/pieces/laneaccess", "entities/pieces/memory"], ->
+define ["entities/pieces/accumulator", "entities/pieces/and", "entities/pieces/bus", "entities/pieces/devicelane", "entities/pieces/directlane", "entities/pieces/equalszero", "entities/pieces/laneaccess", "entities/pieces/lanereadonlyaccess", "entities/pieces/memory", "entities/pieces/opcodesplitter", "entities/pieces/or", "entities/pieces/programmcounter"], ->

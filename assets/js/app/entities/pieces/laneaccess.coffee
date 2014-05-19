@@ -1,6 +1,7 @@
 define ["app", "entities/pieces/basecontrolflow"], (mod86) ->
     mod86.module "Entities.Components", (Components, mod86, Backbone, Marionette, $, _) ->
         Components.LaneAccess = Components.BaseControlFlow.extend
+            type: "LaneAccess"
             defaults:
                 device: null
                 lane: null
@@ -15,3 +16,6 @@ define ["app", "entities/pieces/basecontrolflow"], (mod86) ->
                 @lane.write(@device, @device.valGetter())
             unWrite: ->
                 @lane.unWrite(@device)
+
+        _.defaults(Components.LaneAccess::defaults, Components.BaseControlFlow::defaults)
+        Components.LaneAccess::connectionProps = _.union(Components.LaneAccess::connectionProps, Components.BaseControlFlow::connectionProps)
