@@ -128,10 +128,36 @@ define ["app"], (mod86) ->
                             coord: 325
                         }
                         {
+                            type: "DirectLane"
+                            id: 21
+                        }
+                        {
+                            type: "DirectLane"
+                            id: 22
+                        }
+                        {
+                            type: "DirectLane"
+                            id: 23
+                        }
+                        {
+                            type: "DirectLane"
+                            id: 24
+                        }
+                        {
+                            type: "DirectLane"
+                            id: 25
+                        }
+                        {
                             type: "DeviceLane"
                             id: 7
                             device: 1
                             prop: "counter"
+                        }
+                        {
+                            type: "DeviceLane"
+                            id: 31
+                            device: 1
+                            prop: "adder"
                         }
                         {
                             type: "DeviceLane"
@@ -179,6 +205,12 @@ define ["app"], (mod86) ->
                         }
                         {
                             type: "LaneReadOnlyAccess"
+                            id: 32
+                            device: 31
+                            lane: 25
+                        }
+                        {
+                            type: "LaneReadOnlyAccess"
                             id: 15
                             device: 8
                             lane: 5
@@ -216,6 +248,36 @@ define ["app"], (mod86) ->
                             lane: 6
                             x: 75
                             y: 350
+                        }
+                        {
+                            type: "One"
+                            id: 26
+                            output: 22
+                        }
+                        {
+                            type: "One"
+                            id: 27
+                            output: 24
+                        }
+                        {
+                            type: "EqualsZero"
+                            id: 28
+                            input: 6
+                            output: 21
+                        }
+                        {
+                            type: "And"
+                            id: 29
+                            input1: 21
+                            input2: 22
+                            output: 23
+                        }
+                        {
+                            type: "Or"
+                            id: 30
+                            input1: 23
+                            input2: 24
+                            output: 25
                         }
                     ]
                     keyboardBindings:
@@ -259,4 +321,12 @@ define ["app"], (mod86) ->
                             obj: 4
                             on: "onSub"
                             off: "offSub"
+                        "b":
+                            obj: 26
+                            on: "write"
+                            off: "unWrite"
+                        "c":
+                            obj: 27
+                            on: "write"
+                            off: "unWrite"
             }[id]

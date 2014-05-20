@@ -10,7 +10,7 @@ define ["app", "entities/pieces/basecontrolflow"], (mod86) ->
                 @listenToOnce options.collection, "after:reset", ->
                     getter = @input.valGetter()
                     @output.write @input, ->
-                        getter() != 0
+                        Math.max(getter(), 1)
 
         _.defaults(Components.EqualsZero::defaults, Components.BaseControlFlow::defaults)
         Components.EqualsZero::connectionProps = _.union(Components.EqualsZero::connectionProps, Components.BaseControlFlow::connectionProps)

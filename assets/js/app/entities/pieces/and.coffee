@@ -11,8 +11,11 @@ define ["app", "entities/pieces/basecontrolflow"], (mod86) ->
                 @listenToOnce options.collection, "after:reset", ->
                     getter1 = @input1.valGetter()
                     getter2 = @input2.valGetter()
-                    @output.write @input, ->
-                        not not (getter1() and getter2())
+                    input = _.clone(Backbone.Events)
+                    input.listenTo(@input1, "change", -> @trigger("change"))
+                    input.listenTo(@input2, "change", -> @trigger("change"))
+                    @output.write input, ->
+                        getter1() & getter2()
 
         _.defaults(Components.And::defaults, Components.BaseControlFlow::defaults)
         Components.And::connectionProps = _.union(Components.And::connectionProps, Components.BaseControlFlow::connectionProps)
