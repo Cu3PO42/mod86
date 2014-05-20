@@ -31,7 +31,7 @@ define ["app"], (mod86) ->
                             x: 200
                         }
                         {
-                            type: "ProgrammCounter"
+                            type: "ProgramCounter"
                             id: 9
                             x: 400
                         }

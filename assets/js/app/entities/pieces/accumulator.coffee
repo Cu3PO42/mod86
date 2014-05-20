@@ -11,6 +11,12 @@ define ["app", "entities/pieces/baseic"], (mod86) ->
                 @set(value: @get("value")+1)
             subOne: ->
                 @set(value: @get("value")-1)
+            onAdd: ->
+                @addOne
+            offAdd: ->
+            onSub: ->
+                @subOne
+            offSub: ->
 
         _.defaults(Components.Accumulator::defaults, Components.BaseIC::defaults)
         Components.Accumulator::connectionProps = _.union(Components.Accumulator::connectionProps, Components.BaseIC::connectionProps)
