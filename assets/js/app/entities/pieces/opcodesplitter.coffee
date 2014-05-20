@@ -15,4 +15,4 @@ define ["app", "entities/pieces/baseic"], (mod86) ->
                         address: val % 10000
 
         _.defaults(Components.OpcodeSplitter::defaults, Components.BaseIC::defaults)
-        Components.OpcodeSplitter::connectionProps = _.union(Components.Memory::connectionProps, Components.BaseIC::connectionProps)
+        Components.OpcodeSplitter::connectionProps = _.union(Components.OpcodeSplitter::connectionProps, Components.BaseIC::connectionProps)

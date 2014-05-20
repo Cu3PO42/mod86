@@ -1,4 +1,4 @@
-define ["app", "entities/pieces/laneaccess"], (mod86) ->
+define ["app", "entities/pieces/baseic"], (mod86) ->
     mod86.module "Entities.Components", (Components, mod86, Backbone, Marionette, $, _) ->
         Components.ProgramCounter = Backbone.Model.extend
             type: "ProgramCounter"

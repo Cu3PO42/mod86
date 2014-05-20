@@ -6,15 +6,27 @@ define ["app", "entities/pieces/basecontrolflow"], (mod86) ->
                 device: null
                 lane: null
             connectionProps: ["device", "lane"]
+            initialize: ->
+                @doingReadWrite = false
             read: ->
-                device = @device
-                lane = @lane
-                lane.read(device, device.update(lane.valGetter()))
+                if @doingReadWrite
+                    mod86.trigger("simulation:error", {msg: "Can't read from and write to lane with one device at the same time."})
+                else
+                    device = @device
+                    lane = @lane
+                    @doingReadWrite = true
+                    lane.read(device, device.update(lane.valGetter()))
             unRead: ->
+                @doingReadWrite = false
                 @lane.unRead(@device)
             write: ->
-                @lane.write(@device, @device.valGetter())
+                if @doingReadWrite
+                    mod86.trigger("simulation:error", {msg: "Can't read from and write to lane with one device at the same time."})
+                else
+                    @doingReadWrite = true
+                    @lane.write(@device, @device.valGetter())
             unWrite: ->
+                @doingReadWrite = false
                 @lane.unWrite(@device)
 
         _.defaults(Components.LaneAccess::defaults, Components.BaseControlFlow::defaults)

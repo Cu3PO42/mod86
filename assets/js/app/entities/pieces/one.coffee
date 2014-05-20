@@ -10,5 +10,5 @@ define ["app", "entities/pieces/basecontrolflow"], (mod86) ->
             unWrite: ->
                 @output.unWrite(this)
 
-        _.defaults(Components.Or::defaults, Components.BaseControlFlow::defaults)
-        Components.Or::connectionProps = _.union(Components.Or::connectionProps, Components.BaseControlFlow::connectionProps)
+        _.defaults(Components.One::defaults, Components.BaseControlFlow::defaults)
+        Components.One::connectionProps = _.union(Components.One::connectionProps, Components.BaseControlFlow::connectionProps)

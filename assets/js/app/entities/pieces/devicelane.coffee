@@ -6,11 +6,6 @@ define ["app", "entities/pieces/baselane"], (mod86) ->
             defaults:
                 device: null
                 prop: null
-            overrideGet: (prop) ->
-                if prop == "value"
-                    @device.get("value")
-                else
-                    Components.BaseLane::get.apply(this, arguments)
             overrideSet: (props, options) ->
                 if props.value?
                     tmp = {}
@@ -20,12 +15,12 @@ define ["app", "entities/pieces/baselane"], (mod86) ->
                 Components.BaseLane::set.apply(this, arguments)
             initialize: (models, options) ->
                 @listenToOnce options.collection, "after:reset", ->
-                    @set = @overrideSet
-                    @get = @overrideGet
                     device = @device
                     prop = @get("prop")
                     @listenTo device, "change:#{prop}", ->
-                        @set(value: device[prop])
+                        Components.BaseLane::set.call(this, {value: device.get(prop)})
+                    @set(value: device.get(prop))
+                    @set = @overrideSet
 
         _.defaults(Components.DeviceLane::defaults, Components.BaseLane::defaults)
         Components.DeviceLane::connectionProps = _.union(Components.DeviceLane::connectionProps, Components.BaseLane::connectionProps)

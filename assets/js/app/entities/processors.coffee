@@ -3,7 +3,7 @@ define ["app"], (mod86) ->
         mod86.reqres.setHandler "processors:list", -> [
             {
                 name: "Bonsai"
-                id: 1
+                id: 2
                 description: "Der Bonsai Lerncomputer"
                 author: "Klaus Merkert"
             }
@@ -85,4 +85,178 @@ define ["app"], (mod86) ->
                             obj: 7
                             on: "write"
                             off: "unWrite"
+                2:
+                    type: "New Bonsai"
+                    id: 2
+                    description: "Der Bonsai Lerncomputer"
+                    author: "Klaus Merkert"
+                    pieces: [
+                        {
+                            type: "ProgramCounter"
+                            id: 1
+                            x: 200
+                            y: 0
+                            counter: 1
+                        }
+                        {
+                            type: "Memory"
+                            id: 2
+                            x: 0
+                            y: 200
+                            memory: [10, 5]
+                        }
+                        {
+                            type: "OpcodeSplitter"
+                            id: 3
+                            x: 200
+                            y: 200
+                        }
+                        {
+                            type: "Accumulator"
+                            id: 4
+                            x: 0
+                            y: 400
+                        }
+                        {
+                            type: "Bus"
+                            id: 5
+                            coord: 125
+                        }
+                        {
+                            type: "Bus"
+                            id: 6
+                            coord: 325
+                        }
+                        {
+                            type: "DeviceLane"
+                            id: 7
+                            device: 1
+                            prop: "counter"
+                        }
+                        {
+                            type: "DeviceLane"
+                            id: 8
+                            device: 2
+                            prop: "address"
+                        }
+                        {
+                            type: "DeviceLane"
+                            id: 9
+                            device: 2
+                            prop: "value"
+                        }
+                        {
+                            type: "DeviceLane"
+                            id: 10
+                            device: 3
+                            prop: "opcode"
+                        }
+                        {
+                            type: "DeviceLane"
+                            id: 11
+                            device: 3
+                            prop: "address"
+                        }
+                        {
+                            type: "DeviceLane"
+                            id: 12
+                            device: 3
+                            prop: "value"
+                        }
+                        {
+                            type: "DeviceLane"
+                            id: 13
+                            device: 4
+                            prop: "value"
+                        }
+                        {
+                            type: "LaneAccess"
+                            id: 14
+                            device: 7
+                            lane: 5
+                            x: 275
+                            y: 85
+                        }
+                        {
+                            type: "LaneReadOnlyAccess"
+                            id: 15
+                            device: 8
+                            lane: 5
+                            x: 50
+                            y: 150
+                        }
+                        {
+                            type: "LaneAccess"
+                            id: 16
+                            device: 9
+                            lane: 6
+                            x: 100
+                            y: 250
+                        }
+                        {
+                            type: "LaneAccess"
+                            id: 18
+                            device: 11
+                            lane: 5
+                            x: 300
+                            y: 150
+                        }
+                        {
+                            type: "LaneReadOnlyAccess"
+                            id: 19
+                            device: 12
+                            lane: 6
+                            x: 275
+                            y: 300
+                        }
+                        {
+                            type: "LaneAccess"
+                            id: 20
+                            device: 13
+                            lane: 6
+                            x: 75
+                            y: 350
+                        }
+                    ]
+                    keyboardBindings:
+                        "1":
+                            obj: 14
+                            on: "read"
+                            off: "unRead"
+                        "2":
+                            obj: 14
+                            on: "write"
+                            off: "unWrite"
+                        "3":
+                            obj: 16
+                            on: "read"
+                            off: "unRead"
+                        "4":
+                            obj: 16
+                            on: "write"
+                            off: "unWrite"
+                        "5":
+                            obj: 18
+                            on: "read"
+                            off: "unRead"
+                        "6":
+                            obj: 18
+                            on: "write"
+                            off: "unWrite"
+                        "7":
+                            obj: 20
+                            on: "read"
+                            off: "unRead"
+                        "8":
+                            obj: 20
+                            on: "write"
+                            off: "unWrite"
+                        "9":
+                            obj: 4
+                            on: "onAdd"
+                            off: "offAdd"
+                        "a":
+                            obj: 4
+                            on: "onSub"
+                            off: "offSub"
             }[id]

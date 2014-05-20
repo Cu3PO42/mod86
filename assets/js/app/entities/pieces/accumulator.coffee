@@ -5,18 +5,30 @@ define ["app", "entities/pieces/baseic"], (mod86) ->
             connectionProps: []
             defaults:
                 value: 0
-                x: 0
-                y: 0
+            initialize: ->
+                @doingAddSub = false
             addOne: ->
-                @set(value: @get("value")+1)
+                newVal = @get("value")+1
+                @set(value: (if newVal == 10000 then 0 else newVal))
             subOne: ->
-                @set(value: @get("value")-1)
+                newVal = @get("value")-1
+                @set(value: Math.max(newVal, 0))
             onAdd: ->
-                @addOne
+                if @doingAddSub
+                    mod86.trigger("simulation:error", {msg: "Can't add und subtract on an accumulator at the same time."})
+                else
+                    @doingAddSub = true
+                    @addOne()
             offAdd: ->
+                @doingAddSub = false
             onSub: ->
-                @subOne
+                if @doingAddSub
+                    mod86.trigger("simulation:error", {msg: "Can't add und subtract on an accumulator at the same time."})
+                else
+                    @doingAddSub = true
+                    @subOne()
             offSub: ->
+                @doingAddSub = false
 
         _.defaults(Components.Accumulator::defaults, Components.BaseIC::defaults)
         Components.Accumulator::connectionProps = _.union(Components.Accumulator::connectionProps, Components.BaseIC::connectionProps)

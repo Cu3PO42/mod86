@@ -4,3 +4,6 @@ define ["app"], (mod86) ->
             type: "BaseControlFlow"
             connectionProps: []
             implements: []
+            defaults:
+                x: 0
+                y: 0
