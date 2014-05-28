@@ -6,11 +6,15 @@ define ["app", "entities/pieces/basecontrolflow"], (mod86) ->
             defaults:
                 input: null
                 output: null
+                state: false
             initialize: (models, options) ->
                 @listenToOnce options.collection, "after:reset", ->
                     getter = @input.valGetter()
+                    _set = @set.bind(this)
                     @output.write @input, ->
-                        Math.max(getter(), 1)
+                        res = 1 - (getter() and 1)
+                        _set(state: !!res)
+                        res
 
         _.defaults(Components.EqualsZero::defaults, Components.BaseControlFlow::defaults)
         Components.EqualsZero::connectionProps = _.union(Components.EqualsZero::connectionProps, Components.BaseControlFlow::connectionProps)

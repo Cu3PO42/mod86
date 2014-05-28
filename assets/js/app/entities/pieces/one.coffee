@@ -5,9 +5,12 @@ define ["app", "entities/pieces/basecontrolflow"], (mod86) ->
             connectionProps: ["output"]
             defaults:
                 output: null
+                state: false
             write: ->
+                @set(state: true)
                 @output.write(this, (-> 1))
             unWrite: ->
+                @set(state: false)
                 @output.unWrite(this)
 
         _.defaults(Components.One::defaults, Components.BaseControlFlow::defaults)

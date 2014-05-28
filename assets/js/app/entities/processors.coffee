@@ -253,17 +253,23 @@ define ["app"], (mod86) ->
                             type: "One"
                             id: 26
                             output: 22
+                            x: 460
+                            y: 100
                         }
                         {
                             type: "One"
                             id: 27
                             output: 24
+                            x: 460
+                            y: obj: 1
                         }
                         {
                             type: "EqualsZero"
                             id: 28
                             input: 6
                             output: 21
+                            x: 400
+                            y: 175
                         }
                         {
                             type: "And"
@@ -271,6 +277,8 @@ define ["app"], (mod86) ->
                             input1: 21
                             input2: 22
                             output: 23
+                            x: 400
+                            y: 100
                         }
                         {
                             type: "Or"
@@ -278,6 +286,8 @@ define ["app"], (mod86) ->
                             input1: 23
                             input2: 24
                             output: 25
+                            x: 400
+                            y: obj: 1
                         }
                     ]
                     keyboardBindings:

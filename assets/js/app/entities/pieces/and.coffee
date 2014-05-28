@@ -14,8 +14,11 @@ define ["app", "entities/pieces/basecontrolflow"], (mod86) ->
                     input = _.clone(Backbone.Events)
                     input.listenTo(@input1, "change", -> @trigger("change"))
                     input.listenTo(@input2, "change", -> @trigger("change"))
+                    _set = @set.bind(this)
                     @output.write input, ->
-                        getter1() & getter2()
+                        res = Math.min(1, getter1() and getter2())
+                        _set(state: !!res)
+                        res
 
         _.defaults(Components.And::defaults, Components.BaseControlFlow::defaults)
         Components.And::connectionProps = _.union(Components.And::connectionProps, Components.BaseControlFlow::connectionProps)

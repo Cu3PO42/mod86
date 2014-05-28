@@ -7,9 +7,20 @@ define ["app", "snap", "keypress", "simulate/item/pieces/all"], (mod86, Snap, ke
                 @$el = $(@el = @paper.node)
                 @views = []
                 that = this
-                @collection.forEach (item) ->
+                @collection.each (item) ->
                     view = new mod86.Simulate.Item.Components[item.get("type")](model: item, paper: that.paper, keybindings: options.collection.keyboardBindings)
                     that.views.push(view)
+                _.each @views, (view) =>
+                    for prop in ["x", "y"]
+                        coord = view.model.get(prop)
+                        if coord? and coord.obj?
+                            tmp = {}
+                            res = @collection.get(coord.obj).getPoint(coord.prop)[prop]
+                            if coord.offset?
+                                res += coord.offset
+                            tmp[prop] = res
+                            view.model.set(tmp)
+                    view.afterInitialize()
                 keyboardListener = new keypress.Listener()
                 keyEvents = []
                 for key, prop of options.collection.keyboardBindings
