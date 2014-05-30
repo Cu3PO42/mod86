@@ -115,7 +115,7 @@ define ["app"], (mod86) ->
                             type: "Accumulator"
                             id: 4
                             x: 0
-                            y: 400
+                            y: 450
                         }
                         {
                             type: "Bus"
@@ -125,7 +125,7 @@ define ["app"], (mod86) ->
                         {
                             type: "Bus"
                             id: 6
-                            coord: 325
+                            coord: 350
                         }
                         {
                             type: "DirectLane"
@@ -200,67 +200,97 @@ define ["app"], (mod86) ->
                             id: 14
                             device: 7
                             lane: 5
-                            x: 275
-                            y: 85
+                            x: obj: 1
+                            y:
+                                obj: 1
+                                offset: 60
+                            direction: 1
                         }
                         {
                             type: "LaneReadOnlyAccess"
                             id: 32
                             device: 31
                             lane: 25
+                            x: 400
+                            y: obj: 1
+                            direction: 0
                         }
                         {
                             type: "LaneReadOnlyAccess"
                             id: 15
                             device: 8
                             lane: 5
-                            x: 50
-                            y: 150
+                            x:
+                                obj: 2
+                                prop: "address"
+                            y:
+                                obj: 2
+                                prop: "address"
+                                offset: -80
+                            direction: 3
                         }
                         {
                             type: "LaneAccess"
                             id: 16
                             device: 9
                             lane: 6
-                            x: 100
-                            y: 250
+                            x:
+                                obj: 2
+                                prop: "value"
+                            y:
+                                obj: 2
+                                prop: "value"
+                                offset: 60
+                            direction: 1
                         }
                         {
                             type: "LaneAccess"
                             id: 18
                             device: 11
                             lane: 5
-                            x: 300
-                            y: 150
+                            x:
+                                obj: 3
+                                prop: "address"
+                            y:
+                                obj: 3
+                                prop: "address"
+                                offset: -80
+                            direction: 3
                         }
                         {
                             type: "LaneReadOnlyAccess"
                             id: 19
                             device: 12
                             lane: 6
-                            x: 275
-                            y: 300
+                            x: obj: 3
+                            y:
+                                obj: 3
+                                offset: 72
+                            direction: 1
                         }
                         {
                             type: "LaneAccess"
                             id: 20
                             device: 13
                             lane: 6
-                            x: 75
-                            y: 350
+                            x: obj: 4
+                            y:
+                                obj: 4
+                                offset: -80
+                            direction: 3
                         }
                         {
                             type: "One"
                             id: 26
                             output: 22
-                            x: 460
+                            x: 520
                             y: 100
                         }
                         {
                             type: "One"
                             id: 27
                             output: 24
-                            x: 460
+                            x: 520
                             y: obj: 1
                         }
                         {
@@ -268,7 +298,7 @@ define ["app"], (mod86) ->
                             id: 28
                             input: 6
                             output: 21
-                            x: 400
+                            x: 460
                             y: 175
                         }
                         {
@@ -277,7 +307,7 @@ define ["app"], (mod86) ->
                             input1: 21
                             input2: 22
                             output: 23
-                            x: 400
+                            x: 460
                             y: 100
                         }
                         {
@@ -286,7 +316,7 @@ define ["app"], (mod86) ->
                             input1: 23
                             input2: 24
                             output: 25
-                            x: 400
+                            x: 460
                             y: obj: 1
                         }
                     ]

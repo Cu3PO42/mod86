@@ -7,6 +7,8 @@ define ["app"], (mod86) ->
             defaults:
                 writeable: true
                 value: 0
+            initialize: ->
+                @connectedParts = []
             read: (listener, fun) ->
                 listener.listenTo(this, "change", fun)
                 fun.apply(listener)
@@ -27,3 +29,6 @@ define ["app"], (mod86) ->
                 this.set({ value: getter() })
             valGetter: -> =>
                 @get("value")
+            registerConnection: (pos) ->
+                @connectedParts.push(pos)
+                @trigger("connection", pos)

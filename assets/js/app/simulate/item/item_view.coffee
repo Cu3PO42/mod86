@@ -5,10 +5,12 @@ define ["app", "snap", "keypress", "simulate/item/pieces/all"], (mod86, Snap, ke
                 collection = @collection = new mod86.Entities.Processor(options.collection.pieces, {})
                 @paper = new Snap(options.height, options.width)
                 @$el = $(@el = @paper.node)
+                groups =
+                    lanes: @paper.g()
                 @views = []
                 that = this
                 @collection.each (item) ->
-                    view = new mod86.Simulate.Item.Components[item.get("type")](model: item, paper: that.paper, keybindings: options.collection.keyboardBindings)
+                    view = new mod86.Simulate.Item.Components[item.get("type")](model: item, paper: that.paper, keybindings: options.collection.keyboardBindings, groups: groups)
                     that.views.push(view)
                 _.each @views, (view) =>
                     for prop in ["x", "y"]

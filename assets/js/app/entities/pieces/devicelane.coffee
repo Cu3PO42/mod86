@@ -14,6 +14,7 @@ define ["app", "entities/pieces/baselane"], (mod86) ->
                     delete props.value
                 Components.BaseLane::set.apply(this, arguments)
             initialize: (models, options) ->
+                Components.BaseLane::initialize.apply(this, arguments)
                 @listenToOnce options.collection, "after:reset", ->
                     device = @device
                     prop = @get("prop")

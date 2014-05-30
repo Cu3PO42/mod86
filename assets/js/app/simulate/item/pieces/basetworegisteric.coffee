@@ -8,13 +8,18 @@ define ["app", "simulate/item/pieces/baseic"], (mod86) ->
                 Components.BaseIC::initialize.apply(this, arguments)
                 _.extend(@options, options)
                 options = @options
+                _prop1 = @prop1
+                _prop2 = @prop2
                 @model.getPoint = (arg) ->
-                    if arg == @prop1
+                    if arg == _prop1
                         x: @get("x") + options.sizeX - 35
                         y: @get("y") + options.sizeY - 40
-                    else
+                    else if arg == _prop2
                         x: @get("x") + 35
                         y: @get("y") + options.sizeY - 15
+                    else
+                        x: @get("x") + options.sizeX / 2
+                        y: @get("y") + options.sizeY - 27
                 @register1 = @addNum(@model.get("x")+options.sizeX-65, @model.get("y")+options.sizeY-50)
                 @register2 = @addNum(@model.get("x")+5, @model.get("y")+options.sizeY-25)
                 @render()
