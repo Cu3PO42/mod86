@@ -10,7 +10,7 @@ define ["app", "simulate/item/pieces/baseoneregisteric"], (mod86) ->
 
             addControl: (str, posX, e) ->
                 posY = @model.get("y")+@options.sizeY
-                @options.newYMax(posY+45)
+                @options.newYMax(posY+46)
                 tmp = {}
                 tmp.connectionLine = @paper.line(posX, posY, posX, posY+30)
                 tmp.connectionLine.attr

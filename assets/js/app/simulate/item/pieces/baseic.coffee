@@ -54,5 +54,5 @@ define ["app"], (mod86) ->
                 reg.text.node.innerHTML = padNum(val, @options.registerLength)
 
             afterInitialize: ->
-                @options.newXMax(@model.get("x")+@options.sizeX)
-                @options.newYMax(@model.get("y")+@options.sizeY)
+                @options.newXMax(@model.get("x")+@options.sizeX+1)
+                @options.newYMax(@model.get("y")+@options.sizeY+1)

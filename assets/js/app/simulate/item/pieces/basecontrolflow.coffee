@@ -18,8 +18,8 @@ define ["app", "snap"], (mod86, Snap) ->
                 pos =
                     x: @model.get("x")
                     y: @model.get("y")
-                @options.newXMax(pos.x+@options.radius)
-                @options.newYMax(pos.y+@options.radius)
+                @options.newXMax(pos.x+@options.radius+1)
+                @options.newYMax(pos.y+@options.radius+1)
                 for prop in @model.connectionProps
                     @model[prop].registerConnection(pos)
                 @matrix.translate(@model.get("x"), @model.get("y"))

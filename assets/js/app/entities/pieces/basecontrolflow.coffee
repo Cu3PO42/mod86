@@ -7,3 +7,6 @@ define ["app"], (mod86) ->
             defaults:
                 x: 0
                 y: 0
+
+            registerKeybinding: (key, prop) ->
+                @trigger("keybinding:new", key, prop)

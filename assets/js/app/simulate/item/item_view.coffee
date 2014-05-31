@@ -15,13 +15,11 @@ define ["app", "snap", "keypress", "hbs!/templates/app/simulate/item", "simulate
                         xmax = val
                         @paper.attr
                             width: xmax
-                        console.log "new xMax #{xmax}"
                 newYMax = (val) ->
                     if val > ymax
                         ymax = val
                         @paper.attr
                             height: ymax
-                        console.log "new yMax #{ymax}"
                 @collection.each (item) ->
                     view = new mod86.Simulate.Item.Components[item.get("type")](model: item, paper: that.paper, keybindings: options.collection.keyboardBindings, groups: groups, newXMax: newXMax, newYMax: newYMax)
                     that.views.push(view)
@@ -44,6 +42,7 @@ define ["app", "snap", "keypress", "hbs!/templates/app/simulate/item", "simulate
                     do ->
                         state = false
                         obj = collection.get(prop.obj)
+                        obj.registerKeybinding(key, prop.on)
                         onFn = obj[prop.on].bind(obj)
                         offFn = obj[prop.off].bind(obj)
                         listEl = $el.find("#keybindinglist tr[data-binding='#{key}']")
