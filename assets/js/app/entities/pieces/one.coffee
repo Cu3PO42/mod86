@@ -9,9 +9,11 @@ define ["app", "entities/pieces/basecontrolflow"], (mod86) ->
             write: ->
                 @set(state: true)
                 @output.write(this, (-> 1))
+                true
             unWrite: ->
                 @set(state: false)
                 @output.unWrite(this)
+                true
 
         _.defaults(Components.One::defaults, Components.BaseControlFlow::defaults)
         Components.One::connectionProps = _.union(Components.One::connectionProps, Components.BaseControlFlow::connectionProps)

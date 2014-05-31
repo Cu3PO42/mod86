@@ -12,6 +12,8 @@ define ["app"], (mod86) ->
                 @listenTo @model, "connection", ->
                    @line.attr
                        d: @calculatePath()
+                @$el = $(@el = @line.node)
+                options[{x: "newXMax", y: "newYMax"}[@model.get("orientation")]](@model.get("coord"))
 
             calculatePath: ->
                 if @model.connectedParts.length >= 2

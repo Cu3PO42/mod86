@@ -20,8 +20,10 @@ define ["app"], (mod86) ->
                     writeFun = this.update(fun)
                     this.listenTo(writer, "change", writeFun)
                     writeFun()
+                    true
                 else
                     mod86.trigger("simulation:error", {msg: "You can't write to a lane with two devices at a time."})
+                    false
             unWrite: (writer) ->
                 this.set(writeable: true, value: 0)
                 this.stopListening(writer)

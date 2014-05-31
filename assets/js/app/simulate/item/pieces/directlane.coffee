@@ -10,5 +10,6 @@ define ["app"], (mod86) ->
                         @line.attr
                             stroke: "#000"
                         options.groups.lanes.add(@line)
+                        @$el = $(@el = @line.node)
             render: ->
             afterInitialize: ->

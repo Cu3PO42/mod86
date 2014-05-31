@@ -23,6 +23,8 @@ define ["app"], (mod86) ->
                     "alignment-baseline": "hanging"
                     "font-family": "Anonymous Pro"
                 @listenTo(@model, "change", @render)
+                @group = @paper.g(@frame, @caption)
+                @$el = $(@el = @group.node)
 
             addNum: (x, y, options) ->
                 options or (options = {})
@@ -41,6 +43,7 @@ define ["app"], (mod86) ->
                     "text-anchor": "middle"
                     "alignment-baseline": "mathematical"
                     "font-family": "Anonymous Pro"
+                @group.add(tmp.container, tmp.text)
                 tmp
 
             updateNum: (reg, val) ->
@@ -51,3 +54,5 @@ define ["app"], (mod86) ->
                 reg.text.node.innerHTML = padNum(val, @options.registerLength)
 
             afterInitialize: ->
+                @options.newXMax(@model.get("x")+@options.sizeX)
+                @options.newYMax(@model.get("y")+@options.sizeY)

@@ -244,7 +244,7 @@ define ["app"], (mod86) ->
                             direction: 1
                         }
                         {
-                            type: "LaneAccess"
+                            type: "LaneWriteOnlyAccess"
                             id: 18
                             device: 11
                             lane: 5
@@ -267,6 +267,7 @@ define ["app"], (mod86) ->
                                 obj: 3
                                 offset: 72
                             direction: 1
+                            alwayson: false
                         }
                         {
                             type: "LaneAccess"
@@ -369,4 +370,8 @@ define ["app"], (mod86) ->
                             obj: 27
                             on: "write"
                             off: "unWrite"
+                        "d":
+                            obj: 19
+                            on: "read"
+                            off: "unRead"
             }[id]

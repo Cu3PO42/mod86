@@ -24,7 +24,6 @@ define ["app", "simulate/item/pieces/baseic"], (mod86) ->
                 @register2 = @addNum(@model.get("x")+5, @model.get("y")+options.sizeY-25)
                 @render()
 
-
             render: ->
                 @updateNum(@register1, @model.get(@prop1))
                 @updateNum(@register2, @model.get(@prop2))
