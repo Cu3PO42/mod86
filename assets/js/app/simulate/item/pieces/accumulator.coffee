@@ -7,6 +7,11 @@ define ["app", "simulate/item/pieces/baseoneregisteric"], (mod86) ->
                 Components.BaseOneRegisterIC::initialize.apply(this, arguments)
                 @plus = @addControl("+", @model.get("x")+@options.sizeX/3, "add")
                 @minus = @addControl("-", @model.get("x")+@options.sizeX*2/3, "sub")
+                @listenTo @model, "keybinding:new", (key, prop) ->
+                    if prop == "onAdd"
+                        @plus.binding.node.innerHTML = key.toUpperCase()
+                    else if prop == "onSub"
+                        @minus.binding.node.innerHTML = key.toUpperCase()
 
             addControl: (str, posX, e) ->
                 posY = @model.get("y")+@options.sizeY
@@ -36,5 +41,15 @@ define ["app", "simulate/item/pieces/baseoneregisteric"], (mod86) ->
                     "text-anchor": "middle"
                     "alignment-baseline": "mathematical"
                     "font-family": "Anonymous Pro"
-                @group.add(tmp.connectionLine, tmp.circle, tmp.text)
+                tmp.binding = @paper.text(posX, posY+48, "i")
+                tmp.binding.attr
+                    "text-anchor": "middle"
+                    "alignment-baseline": "hanging"
+                    "font-family": "Anonymous Pro"
+                bbox = tmp.binding.getBBox()
+                tmp.binding.node.innerHTML = ""
+                @options.newXMax(posX+bbox.width/2)
+                @options.newYMax(posY+48+bbox.height)
+                @group.add(tmp.connectionLine, tmp.circle, tmp.text, tmp.binding)
+                tmp
 
