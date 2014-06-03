@@ -1,4 +1,4 @@
-define ["app"], (mod86) ->
+define ["app", "hbs!/templates/app/lightbox", "hbs!/templates/app/simulate/edit"], (mod86, lightboxTpl, editTpl) ->
     mod86.module "Simulate.Item.Components", (Components, mod86, Backbone, Marionette, $, _) ->
         Components.BaseIC = Backbone.View.extend
             initialize: (options) ->
@@ -43,7 +43,9 @@ define ["app"], (mod86) ->
                     "text-anchor": "middle"
                     "alignment-baseline": "mathematical"
                     "font-family": "Anonymous Pro"
-                @group.add(tmp.container, tmp.text)
+                tmp.group = @paper.g(tmp.container, tmp.text)
+                $(tmp.group.node).addClass("prop")
+                @group.add(tmp.group)
                 tmp
 
             updateNum: (reg, val) ->
@@ -52,6 +54,24 @@ define ["app"], (mod86) ->
                     res = "0" + res while res.length < length
                     res
                 reg.text.node.innerHTML = padNum(val, @options.registerLength)
+
+            openEdit: (prop) ->
+                lightbox = lightboxTpl(buttontext: "OK", contained: editTpl(prop: prop, name: @text, editor: "<input type='number' min='0' max='99999'>"))
+                @options.root.$el.append(lightbox)
+                @options.root.keyboardUnregister()
+                editor = @options.root.$el.find("#lightbox .editorcontainer > *")
+                last = @model.get(prop)
+                editor.val(last)
+                set_ = @model.set.bind(@model)
+                editor.on "input", (e) ->
+                    newVal = editor.val()
+                    if /^\d{1,5}$/.test(newVal)
+                        tmp = {}
+                        tmp[prop] = parseInt(newVal)
+                        set_(tmp)
+                        last = newVal
+                    else
+                        editor.val(last)
 
             afterInitialize: ->
                 @options.newXMax(@model.get("x")+@options.sizeX+1)

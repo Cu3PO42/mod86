@@ -16,4 +16,9 @@ define ["app", "simulate/item/pieces/baseic"], (mod86) ->
             render: ->
                 @updateNum(@register, @model.get(@prop))
 
+            events:
+                "click": "openEdit_"
+
+            openEdit_: ->
+                @openEdit(@prop) unless @disableEdit
 

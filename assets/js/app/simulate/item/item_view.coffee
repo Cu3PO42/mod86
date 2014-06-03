@@ -1,4 +1,4 @@
-define ["app", "snap", "keypress", "hbs!/templates/app/simulate/item", "simulate/item/pieces/all"], (mod86, Snap, keypress, itemTpl) ->
+define ["app", "snap", "keypress", "hbs!/templates/app/simulate/item", "hbs!/templates/app/lightbox", "simulate/item/pieces/all"], (mod86, Snap, keypress, itemTpl, lightboxTpl) ->
     mod86.module "Simulate.Item", (Item, mod86, Backbone, Marionette, $, _) ->
         Item.Processor = Backbone.View.extend
             initialize: (options) ->
@@ -21,7 +21,7 @@ define ["app", "snap", "keypress", "hbs!/templates/app/simulate/item", "simulate
                         @paper.attr
                             height: ymax
                 @collection.each (item) ->
-                    view = new mod86.Simulate.Item.Components[item.get("type")](model: item, paper: that.paper, keybindings: options.collection.keyboardBindings, groups: groups, newXMax: newXMax, newYMax: newYMax)
+                    view = new mod86.Simulate.Item.Components[item.get("type")](model: item, paper: that.paper, keybindings: options.collection.keyboardBindings, groups: groups, newXMax: newXMax, newYMax: newYMax, root: that)
                     that.views.push(view)
                 _.each @views, (view) =>
                     for prop in ["x", "y"]
@@ -49,15 +49,22 @@ define ["app", "snap", "keypress", "hbs!/templates/app/simulate/item", "simulate
                         keyEvents.push
                             keys: key
                             on_keydown: ->
-                                res = if state then offFn()
-                                else onFn()
-                                if res
-                                    state = not state
-                                    listEl.toggleClass("activated")
-                keyEvents = keyboardListener.register_many(keyEvents)
+                                unless that.inactive
+                                    res = if state then offFn()
+                                    else onFn()
+                                    if res
+                                        state = not state
+                                        listEl.toggleClass("activated")
+                @keyboardRegister = ->
+                    @keyEvents = keyboardListener.register_many(keyEvents)
+                @keyboardRegister()
                 @keyboardUnregister = ->
-                    keyboardListener.unregister_many(keyEvents)
+                    keyboardListener.unregister_many(@keyEvents)
                 @$el.find("#processorcontainer").append(@paper.node)
+                @listenTo mod86, "simulation:error", (obj) ->
+                    lightbox = lightboxTpl(contained: "<h3 style='color: red;'>Error!</h3>#{obj.msg}", buttontext: "OK")
+                    @$el.append(lightbox)
+                    @keyboardUnregister()
 
             onClose: ->
                 @keyboardUnregister()
@@ -65,3 +72,10 @@ define ["app", "snap", "keypress", "hbs!/templates/app/simulate/item", "simulate
             render: ->
                 @views.forEach (item) ->
                     item.render()
+
+            closeLightbox: ->
+                @$el.find("#lightboxcontainer").remove()
+                @keyboardRegister()
+
+            events:
+                "click #lightbox .button": "closeLightbox"

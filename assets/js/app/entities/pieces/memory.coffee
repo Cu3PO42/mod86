@@ -12,6 +12,8 @@ define ["app", "entities/pieces/baseic"], (mod86) ->
                     @get("memory")[@get("address")] = @get("value")
                 @on "change:address", ->
                     @set(value: @get("memory")[@get("address")] or 0)
+                @on "change:memory", ->
+                    @trigger("change:address")
                 @trigger("change:address")
 
         _.defaults(Components.Memory::defaults, Components.BaseIC::defaults)

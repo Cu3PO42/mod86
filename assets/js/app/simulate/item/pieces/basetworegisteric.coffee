@@ -27,3 +27,12 @@ define ["app", "simulate/item/pieces/baseic"], (mod86) ->
             render: ->
                 @updateNum(@register1, @model.get(@prop1))
                 @updateNum(@register2, @model.get(@prop2))
+
+            openEdit_: (e) ->
+                if e.currentTarget.isSameNode(@register1.group.node)
+                    @openEdit(@prop1) unless @disableEdit1
+                else
+                    @openEdit(@prop2) unless @disableEdit2
+
+            events:
+                "click g": "openEdit_"
