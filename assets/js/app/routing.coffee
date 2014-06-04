@@ -1,9 +1,11 @@
-define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/list_controller", "simulate/item/item_controller"], (mod86, Marionette) ->
+define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/list_controller", "simulate/item/item_controller", "edit/list/list_controller", "edit/item/item_controller"], (mod86, Marionette) ->
     mod86.Router = Marionette.AppRouter.extend
         appRoutes:
             "": "showDashboard"
             "simulate": "showSimulationList"
             "simulate/:id": "showSimulation"
+            "edit": "showEditList"
+            "edit/:id": "showEdit"
     API =
         showDashboard: ->
             mod86.Dashboard.Controller.show()
@@ -11,6 +13,10 @@ define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/li
             mod86.Simulate.List.Controller.show()
         showSimulation: (id) ->
             mod86.Simulate.Item.Controller.show(id)
+        showEditList: ->
+            mod86.Edit.List.Controller.show()
+        showEdit: (id) ->
+            mod86.Edit.Item.Controller.show(id)
         logout: ->
             $.get "/logout", (data) ->
                 if data.type == "logout" and data.success
@@ -30,5 +36,6 @@ define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/li
     mod86.on "logout:success", ->
         window.location.href = "http://localhost:1337"
     mod86.on "simulate:item", (id) ->
-        Backbone.history.navigate("simulate/#{id}")
         API.showSimulation(id)
+    mod86.on "edit:item", (id) ->
+        API.showEdit(id)
