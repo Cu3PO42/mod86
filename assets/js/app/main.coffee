@@ -1,6 +1,7 @@
 require.config
     baseUrl: "/js/app"
     paths:
+        "ace": "../vendor/ace"
         "backbone": "../vendor/backbone"
         "backbone.wreqr": "../vendor/backbone.wreqr"
         "backbone.babysitter": "../vendor/backbone.babysitter"
