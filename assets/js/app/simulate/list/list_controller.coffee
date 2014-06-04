@@ -1,4 +1,4 @@
-require ["app", "simulate/list/list_view", "entities/processors"], (mod86) ->
+define ["app", "simulate/list/list_view", "entities/processors"], (mod86) ->
     mod86.module "Simulate.List", (List, mod86, Backbone, Marionette, $, _) ->
         List.Controller =
             show: ->

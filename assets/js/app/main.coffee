@@ -4,6 +4,7 @@ require.config
         "backbone": "../vendor/backbone"
         "backbone.wreqr": "../vendor/backbone.wreqr"
         "backbone.babysitter": "../vendor/backbone.babysitter"
+        "css": "../vendor/css"
         "marionette": "../vendor/backbone.marionette"
         "marionette.handlebars": "../vendor/backbone.marionette.handlebars"
         "jquery": "../vendor/jquery"

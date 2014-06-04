@@ -1,4 +1,4 @@
-require ["app", "hbs!/templates/app/simulate/list", "hbs!/templates/app/simulate/list_item"], (mod86, listTpl, listItemTpl) ->
+define ["app", "hbs!/templates/app/simulate/list", "hbs!/templates/app/simulate/list_item", "css!/styles/app/simulate/list"], (mod86, listTpl, listItemTpl) ->
     mod86.module "Simulate.List", (List, mod86, Backbone, Marionette, $, _) ->
         List.Simulation = Marionette.ItemView.extend
             template:
@@ -13,7 +13,7 @@ require ["app", "hbs!/templates/app/simulate/list", "hbs!/templates/app/simulate
 
         List.Simulations = Marionette.CompositeView.extend
             tagName: "table"
-            className: "list"
+            className: "list centered"
             itemView: List.Simulation
             itemViewContainer: "tbody"
             template:

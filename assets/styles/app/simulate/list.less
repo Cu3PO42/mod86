@@ -1,0 +1,30 @@
+@import "../../light_theme";
+
+table.list {
+    width: 60%;
+    border-collapse: collapse;
+    thead {
+        text-align: left;
+        tr th {
+            border-bottom: 1px solid @dividerColor;
+        }
+    }
+    tbody {
+        tr {
+            cursor: pointer;
+            &:nth-child(2n) {
+                background-color: @dividerColor;
+            }
+            &:hover {
+                background-color: @mainAccentColor;
+                color: @mainBackgroundColor;
+            }
+        }
+    }
+    td, th {
+        padding: .3em;
+    }
+    tr > :last-child {
+        text-align: right;
+    }
+}

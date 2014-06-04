@@ -36,7 +36,7 @@ define ["app", "snap", "keypress", "hbs!/templates/app/simulate/item", "hbs!/tem
                     view.afterInitialize()
                 keyboardListener = new keypress.Listener()
                 keyEvents = []
-                tplArgs = bindings: (name: key for key, _ of options.collection.keyboardBindings)
+                tplArgs = bindings: (name: key for key, x of options.collection.keyboardBindings)
                 $el = @$el = @el = $(itemTpl(tplArgs))
                 for key, prop of options.collection.keyboardBindings
                     do ->
