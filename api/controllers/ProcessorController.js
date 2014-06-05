@@ -42,6 +42,21 @@ module.exports = {
         }
     },
 
+    descriptions: function(req, res) {
+        Processor.find({ global: true }).done(function(err, users1) {
+            if (err) res.status(500).send(err);
+            else Processor.find({ owner: req.user.id, global: false }).done(function(err, users2) {
+                if (err) res.err(500, err);
+                Array.prototype.push.apply(users1, users2);
+                res.json(users1.map(function(obj) {
+                    delete obj.pieces;
+                    delete obj.keyboardBindings;
+                    return obj;
+                }));
+            });
+        });
+    },
+
     /**
      * Overrides for the settings in `config/controllers.js`
      * (specific to ProcessorController)

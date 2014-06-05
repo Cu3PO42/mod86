@@ -1,6 +1,6 @@
 define ["app", "entities/pieces/all"], (mod86) ->
     mod86.module "Entities", (Entities, mod86, Backbone, Marionette, $, _) ->
-        Entities.Processor = Backbone.Collection.extend
+        ProcessorParts = Backbone.Collection.extend
             initialize: (models, options) ->
                 update_piece = (collection, piece) ->
                     getNewProp = (desc) ->
@@ -34,3 +34,18 @@ define ["app", "entities/pieces/all"], (mod86) ->
 
             model: (attrs, options) ->
                 return new Entities.Components[attrs.type](attrs, options)
+
+        Entities.Processor = Backbone.Model.extend
+            defaults:
+                author: "Generic Author"
+                description: "A micro processor."
+                name: "Genric Processor"
+                pieces: []
+                keyboardBindings: []
+
+            urlRoot: "/processor"
+
+            initialize: ->
+                @on "change:pieces", ->
+                    @pieces = new ProcessorParts(@get("pieces"), {})
+                    @trigger("render")

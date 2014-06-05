@@ -9,8 +9,24 @@
 module.exports = {
 
   attributes: {
-  	processor: {
+  	pieces: {
       type: "json",
+      required: true
+    },
+    keyboardBindings: {
+      type: "json",
+      required: true
+    },
+    name: {
+      type: "string",
+      required: true
+    },
+    author: {
+      type: "string",
+      required: true
+    },
+    description: {
+      type: "string",
       required: true
     },
     global: {
