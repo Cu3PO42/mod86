@@ -47,7 +47,7 @@ define ["app", "static_view", "socket_sails", "hbs!/templates/index/index", "hbs
                     className: "signup"
 
             login: (username, password) ->
-                $.post "/login", {username: username, password: password}, (data) ->
+                $.post "/api/login", {username: username, password: password}, (data) ->
                     if data.type == "login" and data.success
                         mod86.trigger("login:success")
                     else

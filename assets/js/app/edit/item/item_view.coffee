@@ -3,7 +3,7 @@ define ["app", "ace/ace", "hbs!/templates/app/edit/item", "css!/styles/app/edit/
         Item.Editor = Backbone.View.extend
             initialize: (model) ->
                 @$el = @el = $("<div class='editorcontainer'></div>")
-                @$el.html(itemTpl({content: JSON.stringify(model.get("content"), null, "    ")}))
+                @$el.html(itemTpl({content: JSON.stringify(model, null, "    ")}))
                 @editor = ace.edit(@$el.find("#editor")[0])
                 @editor.setTheme("ace/theme/solarized_dark")
                 @editor.getSession().setMode("ace/mode/json")

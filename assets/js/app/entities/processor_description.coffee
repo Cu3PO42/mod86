@@ -8,4 +8,4 @@ define ["app"], (mod86) ->
 
         Entities.ProcessorDescriptions = Backbone.Collection.extend
             model: Entities.ProcessorDescription
-            url: "/processor/descriptions"
+            url: "/api/processor/descriptions"

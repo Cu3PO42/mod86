@@ -21,14 +21,22 @@ module.exports = {
    * Overrides for the settings in `config/controllers.js`
    * (specific to HomeController)
    */
-  index: function(req, res) {
-      if (req.isAuthenticated())
-        res.view('app/index', { username: req.user.username, id: req.user.id });
+  index: function(req, res, next) {
+      if (req.path.match(/\..*/g) || req.path.match(/^\/api\/.*$/)) {
+          return next();
+      } else if (req.isAuthenticated())
+        return res.view('app/index', { username: req.user.username, id: req.user.id });
       else
-        res.view('index/index');
+        return res.view('index/index');
   },
 
-  _config: {}
+  _config: {
+      blueprints: {
+          rest: false,
+          shortcuts: false,
+          actions: false
+      }
+  }
 
   
 };

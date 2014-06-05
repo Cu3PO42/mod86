@@ -43,7 +43,7 @@ define ["app", "entities/pieces/all"], (mod86) ->
                 pieces: []
                 keyboardBindings: []
 
-            urlRoot: "/processor"
+            urlRoot: "/api/processor"
 
             initialize: ->
                 @on "change:pieces", ->

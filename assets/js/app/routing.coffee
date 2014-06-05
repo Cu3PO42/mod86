@@ -18,7 +18,7 @@ define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/li
         showEdit: (id) ->
             mod86.Edit.Item.Controller.show(id)
         logout: ->
-            $.get "/logout", (data) ->
+            $.get "/api/logout", (data) ->
                 if data.type == "logout" and data.success
                     mod86.trigger "logout:success"
                 else
