@@ -16,7 +16,20 @@ module.exports.policies = {
 
   // Default policy for all controllers and actions
   // (`true` allows public access) 
-  '*': true
+  '*': true,
+  UserController: {
+    create: 'hasCorrectPasscode',
+    findAll: ['isAuthenticated', 'isGlobalAdmin'],
+    find: 'isAuthenticated',
+    update: ['isAuthenticated', 'isAdminOrSelf'],
+    destroy: ['isAuthenticated', 'isGlobalAdmin']
+  },
+  ProcessorController: {
+    '*': 'isAuthenticated',
+    create: ['isAuthenticated', 'processor_create'],
+    update: ['isAuthenticated', 'processor_own'],
+    destroy: ['isAuthenticated', 'processor_own']
+  }
 
   /*
 	// Here's an example of adding some policies to a controller

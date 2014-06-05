@@ -8,6 +8,20 @@
 
 var bcrypt = require('bcryptjs');
 
+function hashPassword(user, cb) {
+    bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(user.password, salt, function(err, hash) {
+            if (err) {
+                console.log(err);
+                cb(err);
+            } else {
+                user.password = hash;
+                cb(null, user);
+            }
+        });
+    });
+}
+
 module.exports = {
     attributes: {
         username: {
@@ -31,26 +45,24 @@ module.exports = {
             model: "Class"
         },
         classadmin: {
-            type: "bool"
+            type: "boolean"
+        },
+        globaladmin: {
+            type: "boolean"
         },
         toJSON: function() {
             var obj = this.toObject();
             delete obj.password;
-            console.log("in to json fun");
             return obj;
         }
     },
-    beforeCreate: function(user, cb) {
-        bcrypt.genSalt(10, function(err, salt) {
-            bcrypt.hash(user.password, salt, function(err, hash) {
-                if (err) {
-                    console.log(err);
-                    cb(err);
-                } else {
-                    user.password = hash;
-                    cb(null, user);
-                }
-            });
-        });
+    beforeCreate: hashPassword,
+    beforeUpdate: function(vals, cb) {
+        delete vals.username;
+        if (vals.password !== undefined) {
+            hashPassword(vals, cb);
+        } else {
+            cb(null, vals);
+        }
     }
 };
