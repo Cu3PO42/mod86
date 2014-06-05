@@ -1,4 +1,4 @@
-define ["app", "ace/ace", "hbs!/templates/app/edit/item", "css!/styles/app/edit/item"], (mod86, ace, itemTpl) ->
+define ["app", "ace/ace", "hbs!/templates/app/edit/item", "keypress", "css!/styles/app/edit/item"], (mod86, ace, itemTpl, keypress) ->
     mod86.module "Edit.Item", (Item, mod86, Backbone, Marionette, $, _) ->
         formatModel = (model) ->
             obj = model.toJSON()
@@ -16,11 +16,34 @@ define ["app", "ace/ace", "hbs!/templates/app/edit/item", "css!/styles/app/edit/
                 @editor.getSession().setTabSize(4)
                 @editor.getSession().setUseSoftTabs(true)
                 @editor.getSession().setUseWrapMode(true)
-                @listenToOnce @model, "change", ->
+                @listenTo @model, "change", ->
                     @editor.setValue(formatModel(@model))
                     @updateName()
                 @listenTo @model, "change:id", ->
                     Backbone.history.navigate("/edit/#{@model.get("id")}")
+                that = this
+                @keyListener = new keypress.Listener()
+                @keyEvents = @keyListener.register_many [
+                    {
+                        keys: "meta s"
+                        on_keydown: ->
+                            that.saveModel()
+                    }
+                    {
+                        keys: "meta o"
+                        on_keydown: ->
+                            that.simulate()
+                    }
+                    {
+                        keys: "meta shift o"
+                        on_keydown: ->
+                            that.simulateNewtab()()
+                    }
+                ]
+
+            onClose: ->
+                @keyListener.unregister_many(@keyEvents)
+
 
             updateName: ->
                 @$(".processorname").empty().html(@model.get("name"))
@@ -39,6 +62,7 @@ define ["app", "ace/ace", "hbs!/templates/app/edit/item", "css!/styles/app/edit/
                     update = JSON.parse(txt)
                     res = {}
                     (res[prop] = update[prop] if update.hasOwnProperty(prop)) for prop in ["name", "author", "description", "pieces", "keyboardBindings"]
+                    res.global = (update.global or false) unless @model.get("id")?
                     @model.set(res)
                     @updateName()
                     @model.save [], success: (model) ->

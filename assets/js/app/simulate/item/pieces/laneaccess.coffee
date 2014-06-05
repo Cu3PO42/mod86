@@ -23,7 +23,7 @@ define ["app", "simulate/item/pieces/basecontrolflow"], (mod86) ->
                     if prop == "read"
                         bindings.unshift(key.toUpperCase())
                     else
-                        bindings.push(key)
+                        bindings.push(key.toUpperCase())
                     @bindings.node.innerHTML = bindings.join(", ")
                 @listenTo @model, "read", ->
                     @text.node.innerHTML = "<"
