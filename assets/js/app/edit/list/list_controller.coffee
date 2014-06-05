@@ -1,4 +1,4 @@
-define ["app", "edit/list/list_view", "entities/processors"], (mod86) ->
+define ["app", "edit/list/list_view", "entities/processor"], (mod86) ->
     mod86.module "Edit.List", (List, mod86, Backbone, Marionette, $, _) ->
         List.Controller =
             show: ->

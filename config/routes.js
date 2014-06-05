@@ -35,6 +35,7 @@ module.exports.routes = {
   'get /*': 'HomeController',
   'post /api/login': 'AuthController.process',
   'get /api/logout': 'AuthController.logout',
+  'delete /api/processor/description/:id': 'ProcessorController.destroy'
 
   /*
   // But what if you want your home page to display

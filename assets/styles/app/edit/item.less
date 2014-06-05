@@ -1,6 +1,33 @@
+@import "../../light_theme";
+
 .editorcontainer {
     flex: 1;
     display: flex;
+    flex-direction: column;
+    .monospaced {
+        font-family: "Anonymous Pro", monospace;
+    }
+    & > menu {
+        display: flex;
+        font-weight: 300;
+        & > * {
+            color: @mainAccentColor;
+            padding: .5em 1em;
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
+        .button {
+            cursor: pointer;
+        }
+        .button:hover {
+            @borderHeight: 3px;
+            margin-top: -(@borderHeight);
+            border-bottom: @borderHeight solid @mainAccentColor;
+        }
+        .head {
+            padding-right: 5em;
+        }
+    }
 }
 #editor {
     width: 100%;

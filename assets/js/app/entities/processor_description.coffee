@@ -4,8 +4,9 @@ define ["app"], (mod86) ->
             defaults:
                 author: "Generic Author"
                 description: "A micro processor."
-                name: "Genric Processor"
+                name: "Generic Processor"
+            baseUrl: "/api/processor/description"
 
         Entities.ProcessorDescriptions = Backbone.Collection.extend
             model: Entities.ProcessorDescription
-            url: "/api/processor/descriptions"
+            url: "/api/processor/description"

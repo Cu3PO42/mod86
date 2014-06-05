@@ -39,13 +39,14 @@ define ["app", "entities/pieces/all"], (mod86) ->
             defaults:
                 author: "Generic Author"
                 description: "A micro processor."
-                name: "Genric Processor"
+                name: "Generic Processor"
                 pieces: []
                 keyboardBindings: []
 
             urlRoot: "/api/processor"
 
-            initialize: ->
-                @on "change:pieces", ->
+            initialize: (attributes, options) ->
+                options or (options = {})
+                unless options.noSimulate then @on "change:pieces", ->
                     @pieces = new ProcessorParts(@get("pieces"), {})
                     @trigger("render")

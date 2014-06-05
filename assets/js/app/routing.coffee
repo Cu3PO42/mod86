@@ -5,6 +5,7 @@ define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/li
             "simulate": "showSimulationList"
             "simulate/:id": "showSimulation"
             "edit": "showEditList"
+            "edit/new": "editNew"
             "edit/:id": "showEdit"
     API =
         showDashboard: ->
@@ -16,7 +17,11 @@ define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/li
         showEditList: ->
             mod86.Edit.List.Controller.show()
         showEdit: (id) ->
-            mod86.Edit.Item.Controller.show(id)
+            mod86.Edit.Item.Controller.edit(id)
+        editClone: (id) ->
+            mod86.Edit.Item.Controller.clone(id)
+        editNew: ->
+            mod86.Edit.Item.Controller.create()
         logout: ->
             $.get "/api/logout", (data) ->
                 if data.type == "logout" and data.success
@@ -36,6 +41,14 @@ define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/li
     mod86.on "logout:success", ->
         window.location.href = "http://localhost:1337"
     mod86.on "simulate:item", (id) ->
+        Backbone.history.navigate("simulate/#{id}")
         API.showSimulation(id)
     mod86.on "edit:item", (id) ->
+        Backbone.history.navigate("edit/#{id}")
         API.showEdit(id)
+    mod86.on "edit:item:clone", (id) ->
+        Backbone.history.navigate("edit/new")
+        API.editClone(id)
+    mod86.on "edit:item:new", ->
+        Backbone.history.navigate("edit/new")
+        API.editNew()

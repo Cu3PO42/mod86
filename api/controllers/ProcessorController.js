@@ -42,7 +42,7 @@ module.exports = {
         }
     },
 
-    descriptions: function(req, res) {
+    description: function(req, res) {
         Processor.find({ global: true }).done(function(err, users1) {
             if (err) res.status(500).send(err);
             else Processor.find({ owner: req.user.id, global: false }).done(function(err, users2) {
@@ -51,6 +51,7 @@ module.exports = {
                 res.json(users1.map(function(obj) {
                     delete obj.pieces;
                     delete obj.keyboardBindings;
+                    obj.modifyable = req.user.id === obj.owner;
                     return obj;
                 }));
             });
