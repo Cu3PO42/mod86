@@ -1,0 +1,569 @@
+{
+    "name": "Bonsai with ALU",
+    "author": "Tobias Zimmermann",
+    "description": "An extended version of the Bonsai computer. It has ICs for adding and subtracting",
+    "pieces": [
+        {
+            "type": "ProgramCounter",
+            "id": 1,
+            "x": 200,
+            "y": 0,
+            "counter": 0
+        },
+        {
+            "type": "Memory",
+            "id": 2,
+            "x": 0,
+            "y": 200,
+            "memory": []
+        },
+        {
+            "type": "OpcodeSplitter",
+            "id": 3,
+            "x": 200,
+            "y": 200
+        },
+        {
+            "type": "Accumulator",
+            "id": 4,
+            "x": 0,
+            "y": 450
+        },
+        {
+            "type": "Register",
+            "id": 33,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "type": "Register",
+            "id": 34,
+            "x": 200,
+            "y": 450
+        },
+        {
+            "type": "Bus",
+            "id": 5,
+            "coord": 125
+        },
+        {
+            "type": "Bus",
+            "id": 6,
+            "coord": 350
+        },
+        {
+            "type": "DirectLane",
+            "id": 21
+        },
+        {
+            "type": "DirectLane",
+            "id": 22
+        },
+        {
+            "type": "DirectLane",
+            "id": 23
+        },
+        {
+            "type": "DirectLane",
+            "id": 24
+        },
+        {
+            "type": "DirectLane",
+            "id": 25
+        },
+        {
+            "type": "DeviceLane",
+            "id": 7,
+            "device": 1,
+            "prop": "counter"
+        },
+        {
+            "type": "DeviceLane",
+            "id": 31,
+            "device": 1,
+            "prop": "adder"
+        },
+        {
+            "type": "DeviceLane",
+            "id": 8,
+            "device": 2,
+            "prop": "address"
+        },
+        {
+            "type": "DeviceLane",
+            "id": 9,
+            "device": 2,
+            "prop": "value"
+        },
+        {
+            "type": "DeviceLane",
+            "id": 10,
+            "device": 3,
+            "prop": "opcode"
+        },
+        {
+            "type": "DeviceLane",
+            "id": 11,
+            "device": 3,
+            "prop": "address"
+        },
+        {
+            "type": "DeviceLane",
+            "id": 12,
+            "device": 3,
+            "prop": "value"
+        },
+        {
+            "type": "DeviceLane",
+            "id": 13,
+            "device": 4,
+            "prop": "value"
+        },
+        {
+            "type": "DeviceLane",
+            "id": 35,
+            "device": 33,
+            "prop": "value"
+        },
+        {
+            "type": "DeviceLane",
+            "id": 36,
+            "device": 34,
+            "prop": "value"
+        },
+        {
+            "type": "LaneAccess",
+            "id": 14,
+            "device": 7,
+            "lane": 5,
+            "x": {
+                "obj": 1
+            },
+            "y": {
+                "obj": 1,
+                "offset": 60
+            },
+            "direction": 1
+        },
+        {
+            "type": "LaneReadOnlyAccess",
+            "id": 32,
+            "device": 31,
+            "lane": 25,
+            "x": 400,
+            "y": {
+                "obj": 1
+            },
+            "direction": 0
+        },
+        {
+            "type": "LaneReadOnlyAccess",
+            "id": 15,
+            "device": 8,
+            "lane": 5,
+            "x": {
+                "obj": 2,
+                "prop": "address"
+            },
+            "y": {
+                "obj": 2,
+                "prop": "address",
+                "offset": -80
+            },
+            "direction": 3
+        },
+        {
+            "type": "LaneAccess",
+            "id": 16,
+            "device": 9,
+            "lane": 6,
+            "x": {
+                "obj": 2,
+                "prop": "value"
+            },
+            "y": {
+                "obj": 2,
+                "prop": "value",
+                "offset": 60
+            },
+            "direction": 1
+        },
+        {
+            "type": "LaneWriteOnlyAccess",
+            "id": 18,
+            "device": 11,
+            "lane": 5,
+            "x": {
+                "obj": 3,
+                "prop": "address"
+            },
+            "y": {
+                "obj": 3,
+                "prop": "address",
+                "offset": -80
+            },
+            "direction": 3
+        },
+        {
+            "type": "LaneReadOnlyAccess",
+            "id": 19,
+            "device": 12,
+            "lane": 6,
+            "x": {
+                "obj": 3
+            },
+            "y": {
+                "obj": 3,
+                "offset": 72
+            },
+            "direction": 1,
+            "alwayson": false
+        },
+        {
+            "type": "LaneAccess",
+            "id": 20,
+            "device": 13,
+            "lane": 6,
+            "x": {
+                "obj": 4
+            },
+            "y": {
+                "obj": 4,
+                "offset": -80
+            },
+            "direction": 3
+        },
+        {
+            "type": "LaneAccess",
+            "id": 37,
+            "device": 35,
+            "lane": 5,
+            "x": {
+                "obj": 33
+            },
+            "y": {
+                "obj": 33,
+                "offset": 60
+            },
+            "direction": 1
+        },
+        {
+            "type": "LaneAccess",
+            "id": 38,
+            "device": 36,
+            "lane": 6,
+            "x": {
+                "obj": 34
+            },
+            "y": {
+                "obj": 34,
+                "offset": -80
+            },
+            "direction": 3
+        },
+        {
+            "type": "One",
+            "id": 26,
+            "output": 22,
+            "x": 520,
+            "y": 100
+        },
+        {
+            "type": "One",
+            "id": 27,
+            "output": 24,
+            "x": 520,
+            "y": {
+                "obj": 1
+            }
+        },
+        {
+            "type": "EqualsZero",
+            "id": 28,
+            "input": 6,
+            "output": 21,
+            "x": 460,
+            "y": 175
+        },
+        {
+            "type": "And",
+            "id": 29,
+            "input1": 21,
+            "input2": 22,
+            "output": 23,
+            "x": 460,
+            "y": 100
+        },
+        {
+            "type": "Or",
+            "id": 30,
+            "input1": 23,
+            "input2": 24,
+            "output": 25,
+            "x": 460,
+            "y": {
+                "obj": 1
+            }
+        },
+        {
+            "type": "Adder",
+            "id": 40,
+            "x": 400,
+            "y": 450
+        },
+        {
+            "type": "DeviceLane",
+            "id": 41,
+            "device": 40,
+            "prop": "value1"
+        },
+        {
+            "type": "DeviceLane",
+            "id": 42,
+            "device": 40,
+            "prop": "value2"
+        },
+        {
+            "type": "DeviceLane",
+            "id": 43,
+            "device": 40,
+            "prop": "sum"
+        },
+        {
+            "type": "LaneReadOnlyAccess",
+            "id": 44,
+            "device": 41,
+            "lane": 6,
+            "x": {
+                "obj": 40,
+                "prop": "value1"
+            },
+            "y": {
+                "obj": 40,
+                "prop": "sum",
+                "offset": -80
+            },
+            "direction": 3,
+            "alwayson": false
+        },
+        {
+            "type": "LaneReadOnlyAccess",
+            "id": 45,
+            "device": 42,
+            "lane": 6,
+            "x": {
+                "obj": 40,
+                "prop": "value2"
+            },
+            "y": {
+                "obj": 40,
+                "prop": "sum",
+                "offset": -80
+            },
+            "direction": 3,
+            "alwayson": false
+        },
+        {
+            "type": "LaneWriteOnlyAccess",
+            "id": 46,
+            "device": 43,
+            "lane": 6,
+            "x": {
+                "obj": 40,
+                "prop": "sum"
+            },
+            "y": {
+                "obj": 40,
+                "prop": "sum",
+                "offset": -100
+            },
+            "direction": 3
+        },
+        {
+            "type": "Subtractor",
+            "id": 50,
+            "x": 600,
+            "y": 450
+        },
+        {
+            "type": "DeviceLane",
+            "id": 51,
+            "device": 50,
+            "prop": "value1"
+        },
+        {
+            "type": "DeviceLane",
+            "id": 52,
+            "device": 50,
+            "prop": "value2"
+        },
+        {
+            "type": "DeviceLane",
+            "id": 53,
+            "device": 50,
+            "prop": "difference"
+        },
+        {
+            "type": "LaneReadOnlyAccess",
+            "id": 54,
+            "device": 51,
+            "lane": 6,
+            "x": {
+                "obj": 50,
+                "prop": "value1"
+            },
+            "y": {
+                "obj": 50,
+                "prop": "difference",
+                "offset": -80
+            },
+            "direction": 3,
+            "alwayson": false
+        },
+        {
+            "type": "LaneReadOnlyAccess",
+            "id": 55,
+            "device": 52,
+            "lane": 6,
+            "x": {
+                "obj": 50,
+                "prop": "value2"
+            },
+            "y": {
+                "obj": 50,
+                "prop": "difference",
+                "offset": -80
+            },
+            "direction": 3,
+            "alwayson": false
+        },
+        {
+            "type": "LaneWriteOnlyAccess",
+            "id": 56,
+            "device": 53,
+            "lane": 6,
+            "x": {
+                "obj": 50,
+                "prop": "difference"
+            },
+            "y": {
+                "obj": 50,
+                "prop": "difference",
+                "offset": -100
+            },
+            "direction": 3
+        }
+    ],
+    "keyboardBindings": {
+        "3": {
+            "obj": 16,
+            "on": "write",
+            "off": "unWrite"
+        },
+        "4": {
+            "obj": 16,
+            "on": "read",
+            "off": "unRead"
+        },
+        "5": {
+            "obj": 4,
+            "on": "onAdd",
+            "off": "offAdd"
+        },
+        "6": {
+            "obj": 4,
+            "on": "onSub",
+            "off": "offSub"
+        },
+        "7": {
+            "obj": 20,
+            "on": "read",
+            "off": "unRead"
+        },
+        "8": {
+            "obj": 20,
+            "on": "write",
+            "off": "unWrite"
+        },
+        "9": {
+            "obj": 14,
+            "on": "read",
+            "off": "unRead"
+        },
+        "a": {
+            "obj": 14,
+            "on": "write",
+            "off": "unWrite"
+        },
+        "b": {
+            "obj": 19,
+            "on": "read",
+            "off": "unRead"
+        },
+        "c": {
+            "obj": 18,
+            "on": "write",
+            "off": "unWrite"
+        },
+        "d": {
+            "obj": 27,
+            "on": "write",
+            "off": "unWrite"
+        },
+        "e": {
+            "obj": 26,
+            "on": "write",
+            "off": "unWrite"
+        },
+        "f": {
+            "obj": 37,
+            "on": "read",
+            "off": "unRead"
+        },
+        "g": {
+            "obj": 37,
+            "on": "write",
+            "off": "unWrite"
+        },
+        "h": {
+            "obj": 38,
+            "on": "read",
+            "off": "unRead"
+        },
+        "i": {
+            "obj": 38,
+            "on": "write",
+            "off": "unWrite"
+        },
+        "j": {
+            "obj": 44,
+            "on": "read",
+            "off": "unRead"
+        },
+        "k": {
+            "obj": 45,
+            "on": "read",
+            "off": "unRead"
+        },
+        "l": {
+            "obj": 46,
+            "on": "write",
+            "off": "unWrite"
+        },
+        "m": {
+            "obj": 54,
+            "on": "read",
+            "off": "unRead"
+        },
+        "n": {
+            "obj": 55,
+            "on": "read",
+            "off": "unRead"
+        },
+        "o": {
+            "obj": 56,
+            "on": "write",
+            "off": "unWrite"
+        }
+    }
+}
