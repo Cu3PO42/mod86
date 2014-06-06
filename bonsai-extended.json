@@ -2,6 +2,7 @@
     "name": "Extended Bonsai",
     "author": "Tobias Zimmermann",
     "description": "An extended version of the Bonsai computer. It adds a simple register to each of the two big lanes.",
+    "global": true,
     "pieces": [
         {
             "type": "ProgramCounter",

@@ -2,6 +2,7 @@
     "name": "Bonsai with ALU",
     "author": "Tobias Zimmermann",
     "description": "An extended version of the Bonsai computer. It has ICs for adding and subtracting",
+    "global": true,
     "pieces": [
         {
             "type": "ProgramCounter",

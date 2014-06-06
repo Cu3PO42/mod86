@@ -2,6 +2,7 @@
     "name": "Bonsai",
     "author": "Klaus Merkert",
     "description": "The Bonsai computer. It is an extremely basic processor, having only a couple of ICs and no ALU.",
+    "global": true,
     "pieces": [
         {
             "type": "ProgramCounter",

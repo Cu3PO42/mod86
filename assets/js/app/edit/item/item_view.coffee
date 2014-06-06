@@ -41,9 +41,8 @@ define ["app", "ace/ace", "hbs!/templates/app/edit/item", "keypress", "css!/styl
                     }
                 ]
 
-            onClose: ->
+            close: ->
                 @keyListener.unregister_many(@keyEvents)
-
 
             updateName: ->
                 @$(".processorname").empty().html(@model.get("name"))

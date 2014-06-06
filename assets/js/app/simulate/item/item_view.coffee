@@ -68,7 +68,8 @@ define ["app", "snap", "keypress", "hbs!/templates/app/simulate/item", "hbs!/tem
                         @$el.append(lightbox)
                         @keyboardUnregister()
 
-            onClose: ->
+
+            close: ->
                 @keyboardUnregister()
 
             render: ->

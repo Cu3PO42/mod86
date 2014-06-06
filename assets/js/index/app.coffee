@@ -31,8 +31,18 @@ define ["backbone", "marionette", "marionette.handlebars"], (Backbone, Marionett
             login = document.forms["login"]
             mod86.Index.Controller.login(login.username.value, login.password.value)
         return false
+    $(document).on "click", "form[name='signup'] input[type='submit']", (e) ->
+        e.preventDefault()
+        require ["index/index_controller"], ->
+            signup = document.forms["signup"]
+            mod86.Index.Controller.signup(signup.username.value, signup.email.value, signup.password.value, signup.passcode.value)
     mod86.on "login:success", ->
         window.location.href = "http://localhost:1337"
     mod86.on "login:failed", ->
         alert("Login failed!")
+    mod86.on "signup:success", (username, password) ->
+        require ["index/index_controller"], ->
+            mod86.Index.Controller.login(username, password)
+    mod86.on "signup:failed", ->
+        alert("Signup failed. eMail address and username must be unique.")
     return mod86
