@@ -11,7 +11,7 @@ define ["app", "entities/pieces/baseic"], (mod86) ->
                 @on "change", ->
                     res = (@get("value1") - @get("value2"))
                     if res < 0 then res += 100000
-                    @set(sum: difference)
+                    @set(difference: res)
 
         _.defaults(Components.Subtractor::defaults, Components.BaseIC::defaults)
         Components.Subtractor::connectionProps = _.union(Components.Subtractor::connectionProps, Components.BaseIC::connectionProps)
