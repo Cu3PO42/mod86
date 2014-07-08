@@ -39,8 +39,8 @@ define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/li
         e.preventDefault()
         API.logout()
     mod86.on "logout:success", ->
-        window.location.href = "http://localhost:1337"
-    mod86.on "logout:failes", ->
+        window.location.href = "#{window.location.protocol}//#{window.location.hostname}"
+    mod86.on "logout:failed", ->
         alert("Logout failed.")
     mod86.on "simulate:item", (id) ->
         Backbone.history.navigate("simulate/#{id}")

@@ -37,7 +37,7 @@ define ["backbone", "marionette", "marionette.handlebars"], (Backbone, Marionett
             signup = document.forms["signup"]
             mod86.Index.Controller.signup(signup.username.value, signup.email.value, signup.password.value, signup.passcode.value)
     mod86.on "login:success", ->
-        window.location.href = "http://localhost:1337"
+        window.location.href = "#{window.location.protocol}//#{window.location.hostname}"
     mod86.on "login:failed", ->
         alert("Login failed!")
     mod86.on "signup:success", (username, password) ->
