@@ -1,8 +1,8 @@
 {
   "name": "mod86",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "0.1.0",
+  "description": "A microprocessor emulator.",
   "dependencies": {
     "sails": "0.9.16",
     "grunt": "0.4.1",
@@ -14,11 +14,11 @@
     "bcryptjs": "~0.7.12"
   },
   "scripts": {
-    "start": "node app.js",
-    "debug": "node debug app.js"
+    "start": "node ./node_modules/sails/bin/sails.js lift",
+    "debug": "node ./node_modules/sails/bin/sails.js lift"
   },
   "main": "app.js",
-  "repository": "",
-  "author": "",
-  "license": ""
+  "repository": "https://github.com/Cu3PO42/mod86.git",
+  "author": "Tobias Zimmermann",
+  "license": "All rights reserved."
 }
