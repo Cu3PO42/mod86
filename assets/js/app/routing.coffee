@@ -39,7 +39,7 @@ define ["app", "marionette", "dashboard/dashboard_controller", "simulate/list/li
         e.preventDefault()
         API.logout()
     mod86.on "logout:success", ->
-        window.location.href = "#{window.location.protocol}//#{window.location.hostname}"
+        window.location.href = "/"
     mod86.on "logout:failed", ->
         alert("Logout failed.")
     mod86.on "simulate:item", (id) ->
